@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="cdt.managedbuild.config.gnu.cross.so.debug.990350669">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.cross.so.debug.990350669" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/challenge"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/challenge/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="challenge" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.cross.so.debug.990350669" name="Debug" parent="cdt.managedbuild.config.gnu.cross.so.debug">
+					<folderInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.so.debug.818351426" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.so.debug">
+							<option id="cdt.managedbuild.option.gnu.cross.prefix.636229302" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix" value="" valueType="string"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.1340834568" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
+							<builder buildPath="${workspace_loc:/challenge}/Debug" id="cdt.managedbuild.builder.gnu.cross.135680958" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" parallelBuildOn="true" parallelizationNumber="optimal" stopOnErr="false" superClass="cdt.managedbuild.builder.gnu.cross"/>
+							<tool command="arm-linux-gnueabihf-gcc" id="cdt.managedbuild.tool.gnu.cross.c.compiler.1985464795" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler">
+								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.option.optimization.level.1774871979" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.debugging.level.1954068787" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.default" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.include.paths.358985636" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false"/>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.789891169" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__VIDEOCORE4__"/>
+									<listOptionValue builtIn="false" value="NDEBUG"/>
+									<listOptionValue builtIn="false" value="__CC_ARM"/>
+									<listOptionValue builtIn="false" value="KHRN_VCOS_VCHIQ"/>
+								</option>
+								<option id="gnu.c.compiler.option.misc.other.549572657" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-marm -c -fmessage-length=0 -std=c99 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration -fgnu89-inline -Wno-unused-value -march=armv6 -mfpu=vfp -mfloat-abi=hard" valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1433025898" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool command="arm-linux-gnueabihf-g++" id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.637461859" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler">
+								<option id="gnu.cpp.compiler.option.optimization.level.92682617" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.debugging.level.1490125485" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.other.other.830601764" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" useByScannerDiscovery="false" value="-marm -c -fmessage-length=0 -march=armv6 -mfpu=vfp -mfloat-abi=hard" valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1855721608" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.118133460" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker">
+								<option defaultValue="true" id="gnu.c.link.option.shared.1615359327" name="Shared (-shared)" superClass="gnu.c.link.option.shared" valueType="boolean"/>
+							</tool>
+							<tool command="arm-linux-gnueabihf-g++" id="cdt.managedbuild.tool.gnu.cross.cpp.linker.542489180" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker">
+								<option defaultValue="true" id="gnu.cpp.link.option.shared.1413206346" name="Shared (-shared)" superClass="gnu.cpp.link.option.shared" valueType="boolean"/>
+								<option id="gnu.cpp.link.option.flags.255520059" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-mcpu=arm1176jzf-s -mfloat-abi=hard" valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1805809671" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.1494647825" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.1231006687" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.737794917" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.266127414" name="dmaer.c" rcbsApplicability="disable" resourcePath="dmaer.c" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.c.compiler.1985464795.33608805">
+						<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1985464795.33608805" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1985464795">
+							<option id="gnu.c.compiler.option.preprocessor.def.symbols.1620807222" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+								<listOptionValue builtIn="false" value="__VIDEOCORE4__"/>
+								<listOptionValue builtIn="false" value="ECLIPSE_IGNORE"/>
+								<listOptionValue builtIn="false" value="NDEBUG"/>
+								<listOptionValue builtIn="false" value="__CC_ARM"/>
+								<listOptionValue builtIn="false" value="KHRN_VCOS_VCHIQ"/>
+							</option>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1101745966" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+					</fileInfo>
+					<folderInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.416018118" name="/" resourcePath="source">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.so.debug.1757952922" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.so.debug" unusedChildren="">
+							<option id="cdt.managedbuild.option.gnu.cross.prefix.636229302.291116996" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix.636229302"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1985464795">
+								<option id="gnu.c.compiler.option.include.paths.278773303" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/helpers/vc_image}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/v3d_library/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/v3d_library/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/khronos/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/middleware/khronos/common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/vcfw/drivers/chip}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/vcinclude}&quot;"/>
+								</option>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1448178512" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="BCG_FB_LAYOUT"/>
+									<listOptionValue builtIn="false" value="BRCM_V3D_OPT=1"/>
+									<listOptionValue builtIn="false" value="_KHRONOS_CLIENT_LOGGING"/>
+									<listOptionValue builtIn="false" value="EGL_SERVER_SMALLINT"/>
+									<listOptionValue builtIn="false" value="BCM_COMP_USE_RELOC_HEAP"/>
+									<listOptionValue builtIn="false" value="UNIFORM_LOCATION_IS_16_BIT"/>
+									<listOptionValue builtIn="false" value="__VIDEOCORE4__"/>
+									<listOptionValue builtIn="false" value="__DIRECT_RENDERING"/>
+									<listOptionValue builtIn="false" value="RPC_DIRECT"/>
+									<listOptionValue builtIn="false" value="RPC_DIRECT_MULTI"/>
+									<listOptionValue builtIn="false" value="NDEBUG__"/>
+									<listOptionValue builtIn="false" value="__CC_ARM"/>
+								</option>
+								<option id="gnu.c.compiler.option.misc.other.1942783228" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-marm -c -fmessage-length=0 -std=c99 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration -fgnu89-inline -Wno-unused-value  -Wimplicit-function-declaration -march=armv6 -mfpu=vfp -mfloat-abi=hard" valueType="string"/>
+								<option id="gnu.c.compiler.option.debugging.level.289598362" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" value="gnu.c.debugging.level.default" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.warnings.allwarn.1578615530" name="All warnings (-Wall)" superClass="gnu.c.compiler.option.warnings.allwarn" value="false" valueType="boolean"/>
+								<option id="gnu.c.compiler.option.optimization.level.1960394205" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" value="gnu.c.optimization.level.most" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.213927787" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool command="arm-linux-gnueabihf-g++" id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1064929833" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.637461859">
+								<option id="gnu.cpp.compiler.option.include.paths.1428492473" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/vcfw/drivers/chip}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/v3d_library/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/vmcs_host}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/vmcs_host/linux}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/vc/include}&quot;"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.preprocessor.def.1474788841" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="BCG_FB_LAYOUT"/>
+									<listOptionValue builtIn="false" value="BRCM_V3D_OPT=1"/>
+									<listOptionValue builtIn="false" value="KHRONOS_CLIENT_LOGGING"/>
+									<listOptionValue builtIn="false" value="EGL_SERVER_SMALLINT"/>
+									<listOptionValue builtIn="false" value="BCM_COMP_USE_RELOC_HEAP"/>
+									<listOptionValue builtIn="false" value="UNIFORM_LOCATION_IS_16_BIT"/>
+									<listOptionValue builtIn="false" value="__VIDEOCORE4__"/>
+									<listOptionValue builtIn="false" value="__DIRECT_RENDERING"/>
+									<listOptionValue builtIn="false" value="RPC_DIRECT"/>
+									<listOptionValue builtIn="false" value="RPC_DIRECT_MULTI"/>
+									<listOptionValue builtIn="false" value="NDEBUG__"/>
+									<listOptionValue builtIn="false" value="__CC_ARM"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.other.other.1203206642" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-marm -c -fmessage-length=0 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration  -Wno-unused-value -Wimplicit-function-declaration -march=armv6 -mfpu=vfp -mfloat-abi=hard" valueType="string"/>
+								<option id="gnu.cpp.compiler.option.debugging.level.1301846002" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.default" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.warnings.allwarn.961749603" name="All warnings (-Wall)" superClass="gnu.cpp.compiler.option.warnings.allwarn" value="false" valueType="boolean"/>
+								<option id="gnu.cpp.compiler.option.optimization.level.1854319348" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.524786401" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.1974582564" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker.118133460"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.2073306566" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.542489180"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.1683480071" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver.1494647825"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.882721148" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler.1231006687">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1648017380" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.394506550" name="rtos_common_secureasm.s" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_secureasm.s" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.1074449216" name="rtos_common_lib_asm.s" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_lib_asm.s" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.283355740" name="rtos_common_mem.cpp" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_mem.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1064929833.1691674658">
+						<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1064929833.1691674658" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1064929833">
+							<option id="gnu.cpp.compiler.option.optimization.level.1762620249" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+							<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1288970602" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.790058287" name="khrn_map_64.c" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/khrn_map_64.c" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421.733935601">
+						<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421.733935601" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421">
+							<option id="gnu.c.compiler.option.misc.other.1174081932" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-marm -c -fmessage-length=0 -std=c99 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration -fgnu89-inline -Wno-unused-value  -Wimplicit-function-declaration -march=armv6 -mfpu=vfp -mfloat-abi=hard" valueType="string"/>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1423491430" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.848361049" name="khrn_prod_4.s" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_prod_4.s" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.1568641942" name="dispman_connection.c" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/dispman_connection.c" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421.550964662">
+						<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421.550964662" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421">
+							<option id="gnu.c.compiler.option.include.paths.1088516932" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+								<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}&quot;"/>
+								<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/vc/include}&quot;"/>
+							</option>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.237838536" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.690936912" name="khrn_bf_4.s" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_bf_4.s" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.351498317" name="khrn_client_rpc_linux.c" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/interface/khronos/common/linux/khrn_client_rpc_linux.c" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421.1291090311">
+						<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421.1291090311" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421">
+							<option id="gnu.c.compiler.option.misc.other.1230101926" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-marm -c -fmessage-length=0 -std=c99 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration -fgnu89-inline -Wno-unused-value  -Wimplicit-function-declaration -march=armv6 -mfpu=vfp -mfloat-abi=hard" valueType="string"/>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1600359701" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+						<tool customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.269119738" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.1114341442" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.1860024279" name="Resource Custom Build Step Output Type"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.1500026202" name="vcos_pthreads.c" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads/vcos_pthreads.c" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421.1783601299">
+						<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421.1783601299" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1226060421">
+							<option id="gnu.c.compiler.option.optimization.level.1281432033" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" value="gnu.c.optimization.level.most" valueType="enumerated"/>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1796656814" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+					</fileInfo>
+					<sourceEntries>
+						<entry excluding="triangle.c|dmaer.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/ext/gl_oes_egl_image_client.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/dispatch|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/server_egl.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/perform|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/khrn_stats.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/test.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_prod_4.s|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_bf_4.s|source/brcm_usrlib/dag/vmcsx/interface/khronos/ext/gl_oes_query_matrix.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/ext/gl_oes_framebuffer_object.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted_server.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted_client.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/linux|source/brcm_usrlib/dag/vmcsx/helpers|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_bf_4.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_mem.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/hl_bios.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/hl_data.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/fwrite.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/fread.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_mem_on_malloc.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/mutexg.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_lib_asm.s|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_lib.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_malloc.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_mempool.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_secure.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_secureasm.s|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_resource_checking.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_latch_logging.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_timer.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/setvbuf.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/dmalloc.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/none|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/khrn_bf_dummy.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/2708/gl11_shader_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_image_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/gl11_matrix_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_tess_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_segment_lengths_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_path_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_hw_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_interlock_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl20/gl20_shader.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/vg_image.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_bf_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl20/gl20_server.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/vg_server.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/ext/gl_oes_draw_texture.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/egl_disp.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/gl11_server.c|source/brcm_usrlib/dag/vmcsx/helpers/vclib|source/brcm_usrlib/dag/vmcsx/interface/khronos/egl/composer.cpp|source/brcm_usrlib/dag/vmcsx/helpers/vcsuspend|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/direct|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/khrn_client_cr.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted_server_android.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted_client_android.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/vcos_vchiq|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/mobcom|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/meego|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/win32|source/brcm_usrlib/dag/vmcsx/interface/khronos/egl/egl_client_cr.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/egl/egl_client_config_cr.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/egl/egl_android.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/wf|source/brcm_usrlib/dag/vmcsx/interface/vchi|source/brcm_usrlib/dag/vmcsx/interface/vchiq_ipc|source/brcm_usrlib/dag/vmcsx/interface/vchiq|source/brcm_usrlib/dag/vmcsx/interface/vchiq_arm|source/brcm_usrlib/dag/vmcsx/interface/vcos|source/brcm_usrlib/dag/vmcsx/interface/vcos/test|source/brcm_usrlib/dag/vmcsx/interface/vcos/vc|source/brcm_usrlib/dag/vmcsx/interface/vcos/mobcom_rtos|source/brcm_usrlib/dag/vmcsx/interface/vcos/nucleus|source/brcm_usrlib/dag/vmcsx/interface/vcos/symbian|source/brcm_usrlib/dag/vmcsx/interface/vcos/threadx|source/brcm_usrlib/dag/vmcsx/interface/vcos/win32|source/brcm_usrlib/dag/vmcsx/interface/vmcs_host|source/brcm_usrlib/dag/vmcsx/helpers/vc_image|source/brcm_usrlib/dag/vmcsx/interface/vmcs_host/linux/vcfiled/vcfiled.c|source/brcm_usrlib/dag/vmcsx/interface/vmcs_host/symbian|source/brcm_usrlib/dag/vmcsx/interface/vmcs_host/vchi_local|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/khrn_int_generic_map.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/dispatch/khrn_dispatch_wf.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/android|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/meego|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/mobcom|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/win32server|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/gl11_server_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/2708/hw_gl11.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/ext/gl_oes_egl_image_gl11.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl20/2708/hw_gl20.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl20/ext/gl_oes_egl_image_gl20.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/glsl/glsl_ast_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/glxx/glxx_shared_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/glxx/glxx_buffer_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/glxx/2708/glxx_inner_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/vg_server_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/wf|source/external/webrtc|vc|source/frameworks|source/frameworks/base/services|source/hardware|existing_source" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="vcos_generic_tls.c|vcos_joinable_thread_from_plain.c|vcos_latch_from_sem.c|vcos_thread_reaper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/brcm_usrlib/dag/vmcsx/interface/vcos/generic"/>
+						<entry excluding="vcos_dlfcn.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="vc/include"/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856" moduleId="org.eclipse.cdt.core.settings" name="Debug linux">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/challenge"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/challenge/Debug linux"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="challenge" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856" name="Debug linux" parent="cdt.managedbuild.config.gnu.cross.so.debug">
+					<folderInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.so.debug.1598655056" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.so.debug">
+							<option id="cdt.managedbuild.option.gnu.cross.prefix.283412948" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix" value="" valueType="string"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.2001578993" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
+							<builder buildPath="${workspace_loc:/challenge}/Debug" id="cdt.managedbuild.builder.gnu.cross.578505449" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" parallelBuildOn="true" parallelizationNumber="optimal" stopOnErr="false" superClass="cdt.managedbuild.builder.gnu.cross"/>
+							<tool command="gcc" id="cdt.managedbuild.tool.gnu.cross.c.compiler.1917826559" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler">
+								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.option.optimization.level.787772108" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.debugging.level.569578801" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" value="gnu.c.debugging.level.default" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.include.paths.2143578945" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths"/>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1556950879" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__VIDEOCORE4__"/>
+									<listOptionValue builtIn="false" value="NDEBUG"/>
+									<listOptionValue builtIn="false" value="__CC_ARM"/>
+									<listOptionValue builtIn="false" value="KHRN_VCOS_VCHIQ"/>
+								</option>
+								<option id="gnu.c.compiler.option.misc.other.1498318689" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value=" -m32 -c -fmessage-length=0 -std=c99 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration -fgnu89-inline -Wno-unused-value " valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.391532210" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool command="g++" id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.535162290" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler">
+								<option id="gnu.cpp.compiler.option.optimization.level.1460965074" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.debugging.level.629850763" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.other.other.127235467" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value=" -m32 -c -fmessage-length=0 " valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.170992753" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.1882162893" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker">
+								<option defaultValue="true" id="gnu.c.link.option.shared.1631343824" name="Shared (-shared)" superClass="gnu.c.link.option.shared" valueType="boolean"/>
+							</tool>
+							<tool command="g++" id="cdt.managedbuild.tool.gnu.cross.cpp.linker.1469618471" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker">
+								<option defaultValue="true" id="gnu.cpp.link.option.shared.1090457878" name="Shared (-shared)" superClass="gnu.cpp.link.option.shared" valueType="boolean"/>
+								<option id="gnu.cpp.link.option.flags.2098426674" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-m32" valueType="string"/>
+								<option id="gnu.cpp.link.option.libs.1164921949" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="pthread"/>
+									<listOptionValue builtIn="false" value="rt"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.885578043" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.1262199041" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.384153477" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.15540536" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.source" name="/" resourcePath="source">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.so.debug.1884529125" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.so.debug" unusedChildren="">
+							<option id="cdt.managedbuild.option.gnu.cross.prefix.636229302.291116996.1934066239" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix.636229302"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.33246869" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
+							<tool command="gcc" id="cdt.managedbuild.tool.gnu.cross.c.compiler.1978795413" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1917826559">
+								<option id="gnu.c.compiler.option.include.paths.2089532800" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/helpers/vc_image}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/v3d_library/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/v3d_library/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/khronos/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/middleware/khronos/common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/vcfw/drivers/chip}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/vcinclude}&quot;"/>
+								</option>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1272130273" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="BCG_FB_LAYOUT"/>
+									<listOptionValue builtIn="false" value="BRCM_V3D_OPT=1"/>
+									<listOptionValue builtIn="false" value="KHRONOS_CLIENT_LOGGING"/>
+									<listOptionValue builtIn="false" value="EGL_SERVER_SMALLINT"/>
+									<listOptionValue builtIn="false" value="BCM_COMP_USE_RELOC_HEAP"/>
+									<listOptionValue builtIn="false" value="UNIFORM_LOCATION_IS_16_BIT"/>
+									<listOptionValue builtIn="false" value="__VIDEOCORE4__"/>
+									<listOptionValue builtIn="false" value="_DIRECT_RENDERING"/>
+									<listOptionValue builtIn="false" value="RPC_DIRECT"/>
+									<listOptionValue builtIn="false" value="RPC_DIRECT_MULTI"/>
+									<listOptionValue builtIn="false" value="NDEBUG__"/>
+									<listOptionValue builtIn="false" value="__CC_ARM"/>
+								</option>
+								<option id="gnu.c.compiler.option.misc.other.1803446224" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value=" -m32 -c -fmessage-length=0 -std=c99 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration -fgnu89-inline -Wno-unused-value -Wimplicit-function-declaration" valueType="string"/>
+								<option id="gnu.c.compiler.option.debugging.level.751501356" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" value="gnu.c.debugging.level.default" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.warnings.allwarn.1586659702" name="All warnings (-Wall)" superClass="gnu.c.compiler.option.warnings.allwarn" value="false" valueType="boolean"/>
+								<option id="gnu.c.compiler.option.optimization.level.1357882826" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" value="gnu.c.optimization.level.none" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1357605943" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool command="g++" id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.369530457" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.535162290">
+								<option id="gnu.cpp.compiler.option.include.paths.391275297" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/vcfw/drivers/chip}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/v3d_library/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/vmcs_host}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/vmcs_host/linux}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/brcm_usrlib/dag/vmcsx}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/vc/include}&quot;"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.preprocessor.def.89042944" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="BCG_FB_LAYOUT"/>
+									<listOptionValue builtIn="false" value="BRCM_V3D_OPT=1"/>
+									<listOptionValue builtIn="false" value="KHRONOS_CLIENT_LOGGING"/>
+									<listOptionValue builtIn="false" value="EGL_SERVER_SMALLINT"/>
+									<listOptionValue builtIn="false" value="BCM_COMP_USE_RELOC_HEAP"/>
+									<listOptionValue builtIn="false" value="UNIFORM_LOCATION_IS_16_BIT"/>
+									<listOptionValue builtIn="false" value="__VIDEOCORE4__"/>
+									<listOptionValue builtIn="false" value="_DIRECT_RENDERING"/>
+									<listOptionValue builtIn="false" value="RPC_DIRECT"/>
+									<listOptionValue builtIn="false" value="RPC_DIRECT_MULTI"/>
+									<listOptionValue builtIn="false" value="NDEBUG__"/>
+									<listOptionValue builtIn="false" value="__CC_ARM"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.other.other.441804652" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value=" -m32 -c -fmessage-length=0 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration  -Wno-unused-value  -Wimplicit-function-declaration" valueType="string"/>
+								<option id="gnu.cpp.compiler.option.debugging.level.2131465215" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.default" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.warnings.allwarn.1996709048" name="All warnings (-Wall)" superClass="gnu.cpp.compiler.option.warnings.allwarn" value="false" valueType="boolean"/>
+								<option id="gnu.cpp.compiler.option.optimization.level.726929461" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.232416557" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.926926912" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker.1882162893"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.1506457129" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1469618471"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.583211556" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver.1262199041"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.670888233" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler.384153477">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1223752114" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_secureasm.s" name="rtos_common_secureasm.s" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_secureasm.s" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_lib_asm.s" name="rtos_common_lib_asm.s" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_lib_asm.s" toolsToInvoke=""/>
+					<folderInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.1291923894" name="/" resourcePath="source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/tga">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.so.debug.1912277315" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.so.debug" unusedChildren="">
+							<option id="cdt.managedbuild.option.gnu.cross.prefix.636229302.291116996.1934066239.587490437" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix.636229302.291116996.1934066239"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1201143667" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1978795413">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1796001686" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.852535281" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.369530457">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.156443982" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.1046496429" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker.926926912"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.806464323" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1506457129"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.828033373" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver.583211556"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.2137481068" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler.670888233">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.451240629" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/khrn_map_64.c" name="khrn_map_64.c" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/khrn_map_64.c" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.c.compiler.236080256">
+						<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.236080256" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1978795413">
+							<option id="gnu.c.compiler.option.misc.other.1288649168" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value=" -m32 -c -fmessage-length=0 -std=c99 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration -fgnu89-inline -Wno-unused-value -Wimplicit-function-declaration" valueType="string"/>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1828912990" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_prod_4.s" name="khrn_prod_4.s" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_prod_4.s" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.1944412709" name="dispman_connection.c" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/dispman_connection.c" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.c.compiler.1978795413.992438754">
+						<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1978795413.992438754" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1978795413">
+							<option id="gnu.c.compiler.option.include.paths.1307579179" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+								<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}&quot;"/>
+								<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/vc/include}&quot;"/>
+							</option>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.929178629" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_bf_4.s" name="khrn_bf_4.s" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_bf_4.s" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.source/brcm_usrlib/dag/vmcsx/interface/khronos/common/linux/khrn_client_rpc_linux.c" name="khrn_client_rpc_linux.c" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/interface/khronos/common/linux/khrn_client_rpc_linux.c" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.c.compiler.1059225854">
+						<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1059225854" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1978795413">
+							<option id="gnu.c.compiler.option.misc.other.598230808" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value=" -m32 -c -fmessage-length=0 -std=c99 -Wno-unused-variable -Wno-unused-but-set-variable -Wno-implicit-function-declaration -fgnu89-inline -Wno-unused-value -Wimplicit-function-declaration" valueType="string"/>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1221315384" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+						<tool customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.269119738.479868638" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.1114341442.824277644" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.1860024279.435043603" name="Resource Custom Build Step Output Type"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.990350669.226158856.source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads/vcos_pthreads.c" name="vcos_pthreads.c" rcbsApplicability="disable" resourcePath="source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads/vcos_pthreads.c" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.c.compiler.1175911956">
+						<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1175911956" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1978795413">
+							<option id="gnu.c.compiler.option.optimization.level.737536256" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" value="gnu.c.optimization.level.none" valueType="enumerated"/>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1693043446" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+					</fileInfo>
+					<sourceEntries>
+						<entry excluding="triangle.c|dmaer.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_mem.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/ext/gl_oes_egl_image_client.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/dispatch|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/server_egl.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/perform|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/khrn_stats.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/test.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_prod_4.s|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_bf_4.s|source/brcm_usrlib/dag/vmcsx/interface/khronos/ext/gl_oes_query_matrix.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/ext/gl_oes_framebuffer_object.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted_server.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted_client.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/linux|source/brcm_usrlib/dag/vmcsx/helpers|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_bf_4.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/hl_bios.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/hl_data.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/fwrite.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/fread.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_mem_on_malloc.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/mutexg.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_lib_asm.s|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_lib.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_malloc.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_mempool.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_secure.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common_secureasm.s|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_common.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_resource_checking.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_latch_logging.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/rtos_timer.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/setvbuf.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/common/dmalloc.c|source/brcm_usrlib/dag/vmcsx/vcfw/rtos/none|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/khrn_bf_dummy.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/2708/gl11_shader_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_image_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/gl11_matrix_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_tess_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_segment_lengths_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_path_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_hw_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/khrn_interlock_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl20/gl20_shader.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/vg_image.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/2708/vg_bf_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl20/gl20_server.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/vg_server.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/ext/gl_oes_draw_texture.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/egl_disp.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/gl11_server.c|source/brcm_usrlib/dag/vmcsx/helpers/vclib|source/brcm_usrlib/dag/vmcsx/interface/khronos/egl/composer.cpp|source/brcm_usrlib/dag/vmcsx/helpers/vcsuspend|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/direct|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/khrn_client_cr.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted_server_android.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/selfhosted/khrn_client_rpc_selfhosted_client_android.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/vcos_vchiq|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/mobcom|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/meego|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/win32|source/brcm_usrlib/dag/vmcsx/interface/khronos/egl/egl_client_cr.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/egl/egl_client_config_cr.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/egl/egl_android.c|source/brcm_usrlib/dag/vmcsx/interface/khronos/wf|source/brcm_usrlib/dag/vmcsx/interface/vchi|source/brcm_usrlib/dag/vmcsx/interface/vchiq_ipc|source/brcm_usrlib/dag/vmcsx/interface/vchiq|source/brcm_usrlib/dag/vmcsx/interface/vchiq_arm|source/brcm_usrlib/dag/vmcsx/interface/vcos|source/brcm_usrlib/dag/vmcsx/interface/vcos/test|source/brcm_usrlib/dag/vmcsx/interface/vcos/vc|source/brcm_usrlib/dag/vmcsx/interface/vcos/mobcom_rtos|source/brcm_usrlib/dag/vmcsx/interface/vcos/nucleus|source/brcm_usrlib/dag/vmcsx/interface/vcos/symbian|source/brcm_usrlib/dag/vmcsx/interface/vcos/threadx|source/brcm_usrlib/dag/vmcsx/interface/vcos/win32|source/brcm_usrlib/dag/vmcsx/interface/vmcs_host|source/brcm_usrlib/dag/vmcsx/helpers/vc_image|source/brcm_usrlib/dag/vmcsx/interface/vmcs_host/linux/vcfiled/vcfiled.c|source/brcm_usrlib/dag/vmcsx/interface/vmcs_host/symbian|source/brcm_usrlib/dag/vmcsx/interface/vmcs_host/vchi_local|source/brcm_usrlib/dag/vmcsx/interface/khronos/common/khrn_int_generic_map.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/dispatch/khrn_dispatch_wf.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/android|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/meego|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/mobcom|source/brcm_usrlib/dag/vmcsx/middleware/khronos/egl/win32server|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/gl11_server_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/2708/hw_gl11.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl11/ext/gl_oes_egl_image_gl11.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl20/2708/hw_gl20.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/gl20/ext/gl_oes_egl_image_gl20.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/glsl/glsl_ast_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/glxx/glxx_shared_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/glxx/glxx_buffer_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/glxx/2708/glxx_inner_4.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/vg/vg_server_cr.c|source/brcm_usrlib/dag/vmcsx/middleware/khronos/wf|source/external/webrtc|vc|source/frameworks|source/frameworks/base/services|source/hardware|existing_source" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="vcos_generic_tls.c|vcos_joinable_thread_from_plain.c|vcos_latch_from_sem.c|vcos_thread_reaper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/brcm_usrlib/dag/vmcsx/interface/vcos/generic"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/brcm_usrlib/dag/vmcsx/interface/vcos/glibc"/>
+						<entry excluding="vcos_dlfcn.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="vc/include"/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="challenge.cdt.managedbuild.target.gnu.cross.so.376527559" name="Shared Library" projectType="cdt.managedbuild.target.gnu.cross.so"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/challenge"/>
+		</configuration>
+		<configuration configurationName="Debug linux"/>
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/challenge"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.so.debug.990350669;cdt.managedbuild.config.gnu.cross.so.debug.990350669.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.637461859;cdt.managedbuild.tool.gnu.cpp.compiler.input.1855721608">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.so.release.8567411;cdt.managedbuild.config.gnu.cross.so.release.8567411.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1751408414;cdt.managedbuild.tool.gnu.cpp.compiler.input.1055223017">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.so.release.8567411;cdt.managedbuild.config.gnu.cross.so.release.8567411.;cdt.managedbuild.tool.gnu.cross.c.compiler.1814162743;cdt.managedbuild.tool.gnu.c.compiler.input.1457009477">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.so.debug.990350669;cdt.managedbuild.config.gnu.cross.so.debug.990350669.;cdt.managedbuild.tool.gnu.cross.c.compiler.1985464795;cdt.managedbuild.tool.gnu.c.compiler.input.1433025898">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+</cproject>
