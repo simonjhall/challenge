@@ -1,0 +1,156 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+foreach my $f (@ARGV) {
+   if ($f eq '-h') {
+      die "usage: $0 file1 file2 ... fileN\n";
+   }
+
+   open(F, $f) or die "could not open $f for reading\n";
+   open(OUT, ">$f.tmp") or die "could not open $f.tmp for writing\n";
+   while (<F>) {
+
+      s/vcfw\/rtos\/nucleus\/rtos_nucleus.h/interface\/vcos\/vcos.h/go;
+      s/"nucleus.h"/"interface\/vcos\/vcos.h"/go;
+      s/NU_Create_Semaphore\((.*),(.*),(.*),(.*)\)/vcos_semaphore_create($1,$2,$3)/go;
+      s/NU_Create_Semaphore/vcos_semaphore_create/go;
+      s/NU_Obtain_Semaphore\((.*),\s*((-1)|(NU_SUSPEND))\s*\)/vcos_semaphore_wait($1)/go;
+      s/NU_Obtain_Semaphore\((.*),\s*((0)|(NU_NO_SUSPEND))\s*\)/vcos_semaphore_trywait($1)/go;
+      s/NU_Obtain_Semaphore/vcos_semaphore_wait/go;
+      s/NU_Release_Semaphore/vcos_semaphore_post/go;
+      s/NU_Delete_Semaphore/vcos_semaphore_delete/go;
+      
+      if (m/NU_Create_Task/) {
+         print OUT <<EOF;
+ -- NU_Create_Task replaced by vcos_thread_create_classic. Mostly the same, but\r
+ -- you can't choose the preemption, and the entry point is a function taking only void* and\r
+ -- returning void*.\r
+EOF
+      }
+      s/NU_Create_Task/vcos_thread_create_classic/go;
+      s/NU_Delete_Task\((.*)\)/vcos_thread_join($1,NULL) FIXME: TERMINATE+DELETE REPLACED BY JOIN - ONLY NEED ONE!/go;
+      s/NU_Terminate_Task\((.*)\)/vcos_thread_join($1,NULL) FIXME: TERMINATE+DELETE REPLACED BY JOIN - ONLY NEED ONE!/go;
+      
+      s/NU_Delete_Event_Group/vcos_event_flags_delete/go;
+      s/NU_Set_Events/vcos_event_flags_set/go;
+
+      # try to convert the timeout argument ... could be 0, -1, NU_SUSPEND, NU_NO_SUSPEND or a number...
+
+      if (m/NU_Retrieve_Events(.*NU[_NO]*SUSPEND)/) {
+         s/NU_Retrieve_Events\((.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*)\)/vcos_event_flags_get($1, $2, $3, $5, $4)/go;
+      } else {
+         if (m/NU_Retrieve_Events\((.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*)\)/) {
+            my $repl;
+            if ($5 eq '0') {
+               $repl = 'VCOS_NO_SUSPEND';
+            } else {
+               $repl = "**CONVERT THIS TO MS**($5)";
+            }
+            s/NU_Retrieve_Events\((.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*)\)/vcos_event_flags_get($1, $2, $3, $repl, $4)/go;
+         }
+      }
+      s/NU_Retrieve_Events/vcos_event_flags_get/go;
+      s/NU_Create_Event_Group/vcos_event_flags_create/go;
+
+      s/\bSTATUS\b/VCOS_STATUS_T/go;
+      s/\bUNSIGNED\b/VCOS_UNSIGNED/go;
+      
+      s/NU_NULL/NULL/go;
+      s/NU_OR/VCOS_OR/go;
+      s/NU_SUSPEND/VCOS_SUSPEND/go;
+      s/NU_NO_SUSPEND/VCOS_NO_SUSPEND/go;
+      s/NU_SUCCESS/VCOS_SUCCESS/go;
+      s/NU_TIMEOUT/VCOS_EAGAIN/go;
+      s/NU_START/VCOS_START/go;
+      s/NU_NO_START/VCOS_NO_START/go;
+      s/NU_AND/VCOS_AND/go;
+      s/NU_Current_Task_Pointer/vcos_thread_current/go;
+      
+      s/NU_QUEUE/VCOS_QUEUE_T/go;
+      s/NU_SEMAPHORE/VCOS_SEMAPHORE_T/go;
+      s/NU_TASK/VCOS_THREAD_T/go;
+      s/NU_EVENT_GROUP/VCOS_EVENT_FLAGS_T/go;
+      s/NU_AFFINITY_CPU/VCOS_AFFINITY_CPU/go;
+      s/NU_AFFINITY_MASK/VCOS_AFFINITY_MASK/go;
+      s/NU_HISR/VCOS_HISR_T/go;
+      
+      s/NU_Relinquish/vcos_thread_relinquish/go;
+      s/NU_Create_Shared_Stack_HISR/vcos_legacy_hisr_create/go;
+      s/NU_Change_Preemption/vcos_change_preemption/go;
+      s/ifdef *FOR_NUCLEUS/if VCOS_HAVE_RTOS/go;
+      s/if defined\(\s*FOR_NUCLEUS\s*\)/if VCOS_HAVE_RTOS/go;
+
+      s/platform_semaphore_post/vcos_semaphore_post/go;
+      s/platform_semaphore_wait\((.*),(.*)\)/vcos_semaphore_wait($1)/go;
+      s/platform_semaphore_wait/vcos_semaphore_wait/go;
+      s/platform_semaphore_delete/vcos_semaphore_delete/go;
+      s/platform_semaphore_create/vcos_semaphore_create/go;
+      s/PLATFORM_SEMAPHORE_T/VCOS_SEMAPHORE_T/go;
+
+      s/platform_eventgroup_create\((.*)\)/vcos_event_flags_create($1, VCOS_FUNCTION)/go;
+      s/platform_eventgroup_create/vcos_event_flags_create/go;
+      s/platform_eventgroup_set/vcos_event_flags_set/go;
+      s/platform_eventgroup_get/vcos_event_flags_get/go;
+      s/platform_eventgroup_delete/vcos_event_flags_delete/go;
+      
+      s/platform_sleep/vcos_sleep/go;
+      s/platform_malloc\s*\(\s*(.*),\s*(.*),\s*(.*)\s*\)/vcos_malloc($1, VCOS_FUNCTION)/go;
+      s/platform_calloc\(\s*(.*),\s*(.*),\s*(.*),\s*(.*)\s*\)/vcos_calloc($1, $2, VCOS_FUNCTION)/go;
+      s/platform_malloc_aligned\(\s*(.*),\s*(.*),\s*(.*)\s*\)/vcos_malloc_aligned($1, $2, $3)/go;
+      s/platform_free/vcos_free/go;
+
+      s/platform_thread_create\((.*),(.*)\)/vcos_thread_create(\&thread, VCOS_FUNCTION, platform_thread_attributes(), $1, $2)/go;
+      s/platform_thread_create/vcos_host_thread_attributes/go;
+
+      s/platform_thread_join\((.*)\)/vcos_thread_join(\&$1,NULL)/go;
+
+      s/PLATFORM_THREAD_T/VCOS_THREAD_T/go;
+
+      s/PLATFORM_EVENTGROUP_T/VCOS_EVENT_FLAGS_T/go;
+      s/PLATFORM_EVENTGROUP_OPERATION_AND/VCOS_AND/go;
+      s/PLATFORM_EVENTGROUP_OPERATION_OR/VCOS_OR/go;
+      s/PLATFORM_EVENTGROUP_OPERATION_AND_CONSUME/VCOS_AND_CONSUME/go;
+      s/PLATFORM_EVENTGROUP_OPERATION_OR_CONSUME/VCOS_OR_CONSUME/go;
+      s/PLATFORM_EVENTGROUP_SUSPEND/VCOS_EVENT_FLAGS_SUSPEND/go;
+      s/PLATFORM_EVENTGROUP_NO_SUSPEND/VCOS_EVENT_FLAGS_NO_SUSPEND/go;
+
+      s/NU_Sleep\((.*)\)/vcos_sleep(FIXME: Convert ticks to milliseconds:$1)/go;
+
+      s/NU_Create_Queue\((.*),(.*),(.*),(.*),(.*),(.*),(.*)\)/vcos_queue_create($1, $2, $3, $4, $6)/go;
+      s/NU_Send_To_Queue\((.*),(.*),(.*),(.*)\)/vcos_queue_send($1, $2, $4)/go;
+      s/NU_Receive_From_Queue\((.*),(.*),(.*),(.*),(.*)\)/vcos_queue_receive($1, $2, $5)/go;
+      
+      s/NU_Delete_HISR/vcos_legacy_hisr_delete/go;
+      s/NU_Create_HISR/vcos_legacy_hisr_create/go;
+      s/NU_Activate_HISR/vcos_legacy_hisr_activate/go;
+      s/NU_In_LISR/vcos_in_interrupt/go;
+
+      s/NU_Activate_HISR/vcos_legacy_hisr_activate/go;
+      s/rtos_create_shared_stack_hisr/vcos_create_shared_stack_hisr/go;
+
+      s/(NU_Change_Preemption.*)/$1 \/* FIXME: NU_Change_Preemption does not protect you on a multicore system! *\//;
+
+      print OUT;
+   }
+
+   close OUT;
+   close F;
+   system("mv $f.tmp $f");
+}
+
+
+# Notes:
+#
+# vcos_event_flags_get: the order of the last 2 params is reversed. It's a pain, but means that the passed-out parameters
+# are at the end rather than just stuffed in any old where.
+#
+# Things that can only ever fail when something very bad has happened now just return void, and assert (e.g. vcos_event_flags_set)
+#
+# There's no equivalent to NU_Task_Terminate/NU_Task_Delete. One reason for this is that people invariably get this wrong
+# and forget to call one or the other of these. I've seen 2 bugs involving this in the last year; I can't believe there aren't
+# more. Use vcos_thread_join() instead, which is much harder to screw up.
+
+
+
+

@@ -1,0 +1,3 @@
+CC = armv5tel-redhat-linux-gnueabi-gcc -I../../.. -I.
+
+-include makefile

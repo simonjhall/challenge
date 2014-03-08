@@ -1,0 +1,22 @@
+PREFIX ?= bcm2763-
+CC = $(PREFIX)gcc -I../../vg/2708/platform -I../../../.. -I../../../../interface/vcos/pthreads -DKHRN_VCOS_VCHIQ -D__VIDEOCORE4__
+
+VPATH += ..
+VPATH += ../../egl
+VPATH += ../../glxx
+VPATH += ../../vg
+VPATH += ../../ext
+
+libkhronos.a: khrn_client_cache.o khrn_client.o egl_client_config.o egl_client_context.o egl_client.o glxx_client.o \
+               khrn_client_rpc_vcos_vchiq.o \
+               khrn_client_platform_vcos_vchiq.o khrn_client_pointermap.o egl_client_surface.o khrn_client_vector.o vg_client.o \
+               egl_brcm_global_image_client.o egl_khr_image_client.o egl_openmaxil_client.o \
+               egl_khr_sync_client.o gl_oes_egl_image_client.o \
+               egl_khr_lock_surface_client.o khrn_int_image.o \
+               vg_int_mat3x3.o khrn_int_util.o khrn_client_global_image_map.o khrn_int_hash.o
+	$(AR) rs $@ $^
+
+clean:
+	rm -f *.o *.a *.d
+
+-include *.d

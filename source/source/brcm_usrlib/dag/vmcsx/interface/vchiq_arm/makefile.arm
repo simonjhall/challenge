@@ -1,0 +1,20 @@
+PREFIX ?= bcm2763-
+CC = $(PREFIX)gcc
+CFLAGS = -g -D_REENTRANT -DUSE_VCHIQ_ARM -I/usr/armv6tel-redhat-linux-gnueabi/sys-root/usr/include -I../.. -I../vcos/pthreads
+# LDFLAGS = -static
+LDFLAGS = 
+LDLIBS = -L. -L../vcos/pthreads -lvchiq -lvcos -lrt -lpthread
+
+SRCS = vchiq_lib.c vchiq_util.c vchiq_shim.c vchiq_test.c
+
+all: vchiq_test
+
+vchiq_test: vchiq_test.o libvchiq.a
+
+libvchiq.a: vchiq_lib.o vchiq_util.o vchiq_shim.o
+	$(AR) $(ARFLAGS) $@ $^
+
+hello_world: hello_world.o
+
+clean:
+	rm -f *.o *.a *~ *.bak vchiq_test

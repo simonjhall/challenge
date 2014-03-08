@@ -1,0 +1,129 @@
+;Codewright Project File (do not remove or modify this line)
+[ProjInit]
+ConfigSetExtMode=2
+ProjSetConfigFlags=0x04110940
+
+[State]
+SysSetCwd='C:\projects\vc_image'
+SrchSetFlags=0x041e680a
+SrchSetAgainFlags=0x04076004,0
+SrchSetAgainFlags=0x0206600a,1
+FileSortMode=0x0
+_StateView='C:\projects\vc_image\vc_image_rgb565.c',27,27,709,302,-1,-1,63,11,49,1,1,'',0x00100018,0,80,0,0,''
+_StateView='C:\projects\vc_image\vc_image.c',0,0,709,437,-1,-1,106,11,97,1,2,'',0x00100008,0,80,0,0,''
+_StateBuffer='C:\projects\vc_image\vc_image_rgb565.c',0x04000498,63,11,25,'4 7 10 13 16 19 22 25 28 31','',0x101,'',1,72,1,0
+_StateBuffer='C:\projects\vc_image\vc_image.c',0x04000498,106,11,25,'4 7 10 13 16 19 22 25 28 31','',0x101,'',1,72,0,0
+_StateHistory=FILELIST,'C:\projects\vc_image\vc_image_rgb565_asm.s','C:\projects\vclib\vclib.mak','C:\projects\demos\logo\logo.c','C:\projects\demos\logo\compmwlogo.bat','C:\projects\demos\compiledemos.bat','C:\projects\demos\makeflash.bat','C:\projects\demos\logo\compilelogo.bat','C:\projects\vc_image\vc_image.c','C:\projects\vc_image\vc_image_rgb565.c'
+_StateHistory=EDITFILE,'C:\projects\vclib\vclib.pjt'
+_StateHistory=DOCUMENTVISIT,'29          1           C:\projects\demos\compiledemos.bat','4           16          C:\projects\demos\makeflash.bat','23          49          C:\projects\demos\compiledemos.bat','5           31          C:\projects\demos\logo\compilelogo.bat','4           16          C:\projects\demos\makeflash.bat','5           79          C:\projects\demos\logo\compilelogo.bat','23          49          C:\projects\demos\compiledemos.bat','5           79          C:\projects\demos\logo\compilelogo.bat','23          49          C:\projects\demos\compiledemos.bat','4           16          C:\projects\demos\makeflash.bat'
+_StateDocumentVisit=10
+
+[Editor]
+FilterProjDeleteList 
+FilterProjAdd='Source Files','*.c;*.cc;*.cpp;*.cxx',-1
+FilterProjAdd='Header Files','*.h;*.hpp;*.inc',-1
+FilterProjAdd='Assembly Files','*.s;*.asm',-1
+FilterProjAdd='Other Files','*.*',-1
+_RestoreSysFlags=0x43897fc8, 0xfffffffc, 0
+_RestoreSysFlags=0x00023001, 0xffffffff, 1
+CollapseMode=0x13080610
+VCSProject=''
+VCSProjectPath=''
+VCSProjectLocalPath=''
+ScrapSetCount=1
+ClipboardSetCount=1
+ClipboardEnableSepStr=1
+ClipboardSetSepStr='\r\n',0
+ClipboardEnableTermStr=1
+ClipboardSetTermStr='\r\n',0
+
+[Tools]
+ToolDeleteList 
+ToolAddCmd='$_custom_tool_$_1','API Database Editor',1342177312,'cwtedit.exe'
+ToolAddCmd='$_custom_tool_$_2','Paint',1342177312,'pbrush.exe'
+
+[Compiler]
+TagSetCmd='"${HOME}${WTAGS}" -oc -d -t"${TAGFILE}.tag" -p"${TAGFILE}.ptg"',0x8000060
+BrowseSetFile='C:\projects\vc_image\vc_image.ptg'
+TagSetFile='C:\projects\vc_image\vc_image.tag'
+CompilerAddCmdEx='MetaWare Compiler','',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'','','','proj.err','C:\projects\vc_image'
+CompilerAddResponse='MetaWare Compiler',
+CompilerAddCmdEx='$_cw_proj_hash_$','',1073742160,'',1073742224,'',1073742224,'',1073742224,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'','','','proj.err','C:\projects\vc_image'
+CompilerAddResponse='$_cw_proj_hash_$',
+CompilerAddCmdEx='MetaWare Assembler','C:\MetaDeveloper1.05\hcvc\bin\asvc.exe -o C:\projects\vc_image\%r.o -c -g %b%e',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'_PSTIErrorInfo','','','proj.err','C:\projects\vc_image'
+CompilerAddResponse='MetaWare Assembler',
+CompilerAddCmdEx='MetaWare High C/C++ Compiler','C:\MetaDeveloper1.05\hcvc\bin\hcvc.exe -c @%x%y.opc %b%e',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'',1073742160,'_PSTIErrorInfo','','','proj.err','C:\projects\vc_image'
+CompilerAddResponse='MetaWare High C/C++ Compiler',
+CompilerNewExt=.v
+CompilerNewExt=.htm
+CompilerNewExt=.bas
+CompilerNewExt=.awk
+CompilerNewExt=.jsp
+CompilerNewExt=.cfml
+CompilerNewExt=.adb
+CompilerNewExt=.vhd
+CompilerNewExt=.pl
+CompilerNewExt=.pas
+CompilerNewExt=.tk
+CompilerNewExt=.rul
+CompilerNewExt=.asp
+CompilerNewExt=.js
+CompilerNewExt=.cob
+CompilerNewExt=.tcl
+CompilerNewExt=.rc
+CompilerNewExt=.php
+CompilerNewExt=.ini
+CompilerNewExt=.html
+CompilerNewExt=.bat
+CompilerNewExt=.cs
+CompilerNewExt=.txt
+CompilerNewExt=.nrx
+CompilerNewExt=.xml
+CompilerNewExt=.sqlj
+CompilerNewExt=.java
+
+[VersionControl:PVCS]
+VCSSetCmd=VCS_CHECKIN_ID,'put -n -T@"%Q" -M@"%Q" "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKINLOCK_ID,'put -n -T@"%Q" -M@"%Q" -l "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKOUT_ID,'get -y "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKOUTLOCK_ID,'get -y -l "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKLOCK_ID,'vcs -y -l "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKUNLOCK_ID,'vcs -y -u "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKLABEL_ID,'vcs -y -v"${VCSLABEL}" "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKLOG_ID,'vlog "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKPROP_ID,'vlog -b "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKDIFF_ID,'vdiff -r "%b%e"',0x8000040
+VCSSetCmd=VCS_CHECKMENU_ID,'pvcsvmwn',0x8000000
+VCSSetCmd=VCS_ADD_ID,'vcs -i -t@"%Q" "%b%e"',0x8000040
+VCSSetCmd=VCS_REMOVE_ID,'del /f "%b%{??v|___}e"',0x8000040
+
+[Files]
+.\vc_image.c
+.\vc_image_1bpp.c
+.\vc_image_rgb565.c
+.\vc_region.c
+.\vc_image_resize_bytes.c
+.\vc_image_resize_yuv.c
+.\vc_image.h
+.\vc_image_1bpp.h
+.\vc_image_rgb565.h
+.\vc_region.h
+.\vc_image_resize_bytes.h
+.\vc_image_1bpp_asm.s
+.\vc_image_asm.s
+.\vc_image_rgb565_asm.s
+.\vc_image_resize_bytes_hoz.s
+.\vc_image_resize_bytes_vert.s
+.\vc_image_resize_rgb565.c
+.\vc_image_tmpbuf.c
+.\vc_image_resize_rgb565_2d.s
+.\vc_image_resize_bytes_2d.s
+.\vc_image_resize_rgb565_hoz.s
+.\vc_image_resize_rgb565_vert.s
+
+
+[Project]
+ConfigSetLinkDBFilename='C:\MetaDeveloper1.05\cw32\cwright.ldb'
+ConfigSetMarkDBFilename='C:\MetaDeveloper1.05\cw32\cwright.mrk'
+ConfigSetSymbolDBFilename='C:\projects\vc_image\vc_image.sbl'
+EditSetPath='c:\projects\vclib;c:\program files\videocore tools\inc'

@@ -1,0 +1,20 @@
+# This makefile cross-compiles the GL-ES test program
+
+# override the following two variables on the make line as necessary
+CROSS_COMPILE=arm-none-linux-gnueabi-
+STAGING = ../../../../MEEGO
+
+CC = $(CROSS_COMPILE)gcc
+CCINST = $(shell $(CC) -print-search-dirs | awk '/install:/ { print $$2; }')
+CFLAGS = -fPIC -D_REENTRANT -I../../vg/2708/platform -I../../../.. \
+         -I../../../../interface/vcos/pthreads -I$(STAGING)/usr/include \
+         -DKHRN_VCOS_VCHIQ -DSQUIFFLE_PLOPLE -I../../../../include
+LDFLAGS = -L$(STAGING)/usr/lib -L$(STAGING)/lib -lX11 -lEGL -lGLESv2 -lxcb -lXau -lm -lpthread -lrt -lstdc++ -L$(CCINST) -lgcc 
+
+glestest: glestest.cpp
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ 
+
+clean:
+	rm -f *.o *.a *.d *.so glestest
+
+-include *.d

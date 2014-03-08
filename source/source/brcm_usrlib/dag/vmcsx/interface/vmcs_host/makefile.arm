@@ -1,0 +1,38 @@
+SRC_ROOT = ../..
+STAGING ?= ../../MEEGO
+
+PREFIX ?= bcm2763-
+CC = $(PREFIX)gcc
+CFLAGS += -g -Wall -D_REENTRANT -I. -I$(SRC_ROOT) -I../vcos/pthreads -Ilinux
+CFLAGS += -DUSE_VCHIQ_ARM -DVCHI_BULK_ALIGN=1 -DVCHI_BULK_GRANULARITY=1 -DOMX_SKIP64BIT
+
+LDLIBS = -Wl,-Bdynamic -L. -L../vchiq_arm -L../vcos/pthreads \
+	 -L../khronos/common/vcos_vchiq -L$(SRC_ROOT)/host_applications/framework/vmcs -lvmcs_platform -lvmcs_host -lkhronos -lvchiq \
+	-lvcos \
+	-L../khronos/common/meego -lGLESv2 -lEGL \
+	-L$(STAGING)/usr/lib -LX11 -lXau -lxcb \
+	-lX11 -lpthread -lrt -lm
+
+LIB_SRC     += vcilcs_in.c vcilcs_out.c vcilcs_common.c
+LIB_SRC     += vcilcs.c # needed when not building locally hosted applications
+LIB_SRC     += vc_vchi_gencmd.c vc_vchi_filesys.c
+LIB_SRC     += linux/vcfilesys.c linux/vcmisc.c
+LIB_SRC     += ../vchi/os/vcos/vcos_os.c ../vchi/os/vcos/vcos_cv.c
+
+LIB_OBJS    = $(LIB_SRC:.c=.o)
+
+libvmcs_host.a: $(LIB_OBJS)
+	$(AR) $(ARFLAGS) $@ $^
+
+SRCS := vmcs_test.c
+SRCS += $(SRC_ROOT)/host_applications/vmcs/test_apps/iltest/stripes.c
+SRCS += $(SRC_ROOT)/host_applications/vmcs/test_apps/iltest/blocks.c
+SRCS += $(SRC_ROOT)/host_applications/vmcs/test_apps/iltest/playback_api.c
+SRCS += $(SRC_ROOT)/host_applications/vmcs/test_apps/iltest/find_file.c
+
+OBJS    = $(SRCS:.c=.o)
+
+vmcs_test: $(OBJS) $(LIB_OBJS)
+
+clean:
+	rm -f *.o *.a *.d

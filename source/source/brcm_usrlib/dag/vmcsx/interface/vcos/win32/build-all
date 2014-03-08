@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Attempt to build all the interesting win32 targets that use VCOS.
+# Useful for checking that nothing has broken following a change
+
+set -e
+
+make -C interface/vcos/win32 clean
+make -C interface/vcos/win32 COMPILER=gcc
+make -C interface/vcos/win32 clean
+make -C interface/vcos/win32 COMPILER=cl
+make -C interface/vcos/win32 clean
+
+make -C interface/vchi/test/win32 clean
+make -C interface/vchi/test/win32 COMPILER=gcc
+make -C interface/vchi/test/win32 clean
+make -C interface/vchi/test/win32 COMPILER=cl
+
+make -C interface/vchiq/test/win32 clean
+make -C interface/vchiq/test/win32 COMPILER=gcc
+make -C interface/vchiq/test/win32 clean
+make -C interface/vchiq/test/win32 COMPILER=cl
+ 
+#make -C applications/test/ISP_test -f makefile_ux clean
+#make -C applications/test/ISP_test -f makefile_ux
+
+

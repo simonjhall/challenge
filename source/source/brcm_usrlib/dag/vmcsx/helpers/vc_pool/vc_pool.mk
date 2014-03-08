@@ -1,0 +1,9 @@
+LIB_NAME  := vc_pool
+
+LIB_SRC   := vc_pool.c
+
+LIB_LIBS  :=
+LIB_VPATH :=
+LIB_IPATH :=
+LIB_CFLAGS := $(WARNINGS_ARE_ERRORS)
+

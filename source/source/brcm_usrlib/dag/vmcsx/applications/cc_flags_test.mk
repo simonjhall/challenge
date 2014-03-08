@@ -1,0 +1,85 @@
+#	INC_3DMARK06	:=	TRUE
+	INC_3DMARKES2	:=	TRUE
+#	INC_VGMARK10	:=	TRUE
+#	INC_VGMARK11	:=	TRUE
+#	INC_CUSTOM_ES2	:=	TRUE
+
+#	INC_QPU_DEBUG   :=              TRUE
+
+	VMCSX_DIR		:= $(MSP_HOME)/dag/vmcsx
+
+	INCPATH			:=	$(VMCSX_DIR)/.
+#	INCPATH			+=	$(VMCSX_DIR)/vcinclude
+#	INCPATH			+=	$(VMCSX_DIR)/vcinclude/dummy
+#	INCPATH			+=	$(VMCSX_DIR)/interface/khronos
+#	INCPATH			+=	$(VMCSX_DIR)/interface/khronos/include
+#	INCPATH			+=	$(VMCSX_DIR)/interface/khronos/include/EGL
+#	INCPATH			+=	$(VMCSX_DIR)/interface/khronos/include/VG
+#	INCPATH			+=	$(VMCSX_DIR)/interface/khronos/include/GLES
+#	INCPATH			+=	$(VMCSX_DIR)/opensrc/applications/test/khronos/glutes
+#	INCPATH			+=	$(STD_INCPATH)
+
+	CC32FLAGS		:=
+#	CC32FLAGS_TMP	:=	$(subst --kandr_include, ,$(STD_CC32FLAGS))
+#	CC32FLAGS		:=	$(subst --sys_include, ,$(CC32FLAGS_TMP))
+#	CC32FLAGS		+=	-O0
+#	CC32FLAGS		+=  -O2 -Otime
+	CC32FLAGS		+=	-O3
+	CC32FLAGS		+=	-D__CC_ARM
+	CC32FLAGS		+=	-D__VIDEOCORE4__
+#	CC32FLAGS		+=	-DEGL_SERVER_SMALLINT
+#	CC32FLAGS		+=	-DFM_SYSTEM_320_240
+#	CC32FLAGS		+=	-DFM_SYSTEM_640_480
+#	CC32FLAGS		+=	-DFM_SYSTEM_800_480
+#	CC32FLAGS		+=	-DFM_SYSTEM_512_512_TAIJI
+#	CC32FLAGS		+=  -DNDEBUG
+	CC32FLAGS		+=  -DV3D_DEMO
+
+
+ifeq ($(V3D_DEMO),-DTHREEDMARK06)
+	INC_3DMARK06	:=	TRUE
+endif
+
+ifeq ($(V3D_DEMO),-DTHREEDMARKES2)
+	INC_3DMARKES2	:=	TRUE
+endif
+
+ifeq ($(V3D_DEMO),-DCUSTOM_ES2)
+	INC_CUSTOM_ES2	:=	TRUE
+endif
+
+ifeq ($(V3D_DEMO),-DVGMARK10)
+	INC_VGMARK10	:=	TRUE
+endif
+
+ifeq ($(V3D_DEMO),-DVGMARK11)
+	INC_VGMARK11	:=	TRUE
+endif
+
+ifeq ($(INC_3DMARK06),TRUE)
+	CC32FLAGS		+=	-DINC_3DMARK06
+endif
+
+ifeq ($(INC_3DMARKES2),TRUE)
+	CC32FLAGS		+=	-DINC_3DMARKES2
+	CC32FLAGS		+=	-DFM_SYSTEM_GL
+	CC32FLAGS		+=	-DFMU_USE_LUA_SCRIPTING
+endif
+
+ifeq ($(INC_CUSTOM_ES2),TRUE)
+	CC32FLAGS		+=	-DINC_CUSTOM_ES2
+	CC32FLAGS		+=	-DFM_SYSTEM_GL
+	CC32FLAGS		+=	-DFMU_USE_LUA_SCRIPTING
+endif
+
+ifeq ($(INC_VGMARK10),TRUE)
+	CC32FLAGS		+=	-DINC_VGMARK10
+	CC32FLAGS		+=	-DFM_SYSTEM_VG
+endif
+
+ifeq ($(INC_VGMARK11),TRUE)
+	CC32FLAGS		+=	-DINC_VGMARK11
+	CC32FLAGS		+=	-DFM_SYSTEM_VG
+endif
+
+	CXXFLAGS		:=	$(CC32FLAGS)

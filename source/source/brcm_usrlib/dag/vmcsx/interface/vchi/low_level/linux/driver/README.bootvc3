@@ -1,0 +1,23 @@
+BootVC3 - a test tool to boot a 2727B0 using the kernel driver
+
+Building
+--------
+
+Use whatever ARM GCC you need to build with (e.g. determined by toolchain, 
+C lib, etc).
+
+   arm-linux-gcc bootvc3.c -o bootvc3
+
+
+Operation
+---------
+
+Place bootvc3 and the two BIN files into /usr/lib in the root FS.
+Then on a booted board:
+
+
+   bootvc3   2ndstage_host_b0.bin    hello_world.bin
+   
+This boots the VC3 first with the given stage 2 loader, then with the given
+application (in this case one that prints "hello world" on the 2727B0DK LCD).
+

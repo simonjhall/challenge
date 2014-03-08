@@ -1,0 +1,4 @@
+PREFIX ?= bcm2763-
+CC = $(PREFIX)gcc -I../../.. -I.
+
+-include makefile

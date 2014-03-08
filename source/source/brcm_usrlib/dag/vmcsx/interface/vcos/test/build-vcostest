@@ -1,0 +1,19 @@
+#!/bin/sh
+
+rtos=$1
+if [ x$rtos = x ]; then
+   echo "usage: $0 <rtos>"
+   exit 1
+fi
+
+host=`uname`
+
+vcos_test=$(dirname $0)
+root=$vcos_test/../../..
+mkdir -p $root/build/vcos_test/$rtos-$host
+cd $root/build/vcos_test/$rtos-$host
+cmake ../../../interface/vcos/test
+make
+
+
+

@@ -1,0 +1,60 @@
+# override the following two variables on the make line as necessary
+PREFIX ?= bcm2763-
+CROSS_COMPILE=$(PREFIX)
+STAGING = ../../../../MEEGO
+INSTALLDIR = $(STAGING)/usr/lib
+
+CC = $(CROSS_COMPILE)gcc
+CFLAGS = -fPIC -D_REENTRANT -I../../vg/2708/platform -I../../../.. \
+         -I../../../../interface/vcos/pthreads \
+         -I$(STAGING)/usr/include -DKHRN_VCOS_VCHIQ \
+	 -I../../../../interface/vchiq_arm/ \
+	 -D__VIDEOCORE4__ \
+	 -DKHRONOS_CLIENT_LOGGING
+LDFLAGS = -call_shared -shared -rpath-link=$(STAGING)/usr/lib \
+          -L$(STAGING)/usr/lib/libX11.so \
+           
+VPATH += ..
+VPATH += ../../egl
+VPATH += ../../glxx
+VPATH += ../../vg
+VPATH += ../../ext
+VPATH += ../../../vcos/generic
+VPATH += ../../../vcos/pthreads
+VPATH += ../../../vchiq_arm
+
+all: libGLESv2.so libEGL.so
+
+libGLESv2.so:  glxx_client.o 
+	$(CROSS_COMPILE)ld $(LDFLAGS) -soname=libGLESv2.so -o $@ $^ 
+
+libEGL.so: egl_client_config.o egl_client_context.o egl_client.o egl_client_surface.o \
+ 				   egl_brcm_global_image_client.o egl_khr_image_client.o \
+           egl_khr_sync_client.o gl_oes_egl_image_client.o \
+           khrn_client_platform_meego.o khrn_client_pointermap.o egl_khr_lock_surface_client.o \
+ 					 khrn_client_vector.o vg_client.o khrn_int_image.o \
+ 					 vg_int_mat3x3.o khrn_int_util.o khrn_client_global_image_map.o khrn_int_hash.o \
+ 					 vcos_pthreads.o vcos_generic_event_flags.o \
+           vcos_mem_from_malloc.o vcos_generic_named_sem.o \
+           vcos_generic_reentrant_mtx.o  vcos_abort.o \
+           vcos_msgqueue.o vchiq_lib.o util.o \
+           khrn_client_cache.o khrn_client.o \
+           khrn_client_rpc_meego.o khrn_client_cache.o khrn_client.o 
+	$(CROSS_COMPILE)ld $(LDFLAGS) -soname=libEGL.so -o $@ $^ 
+
+install:
+	cp libEGL.so $(INSTALLDIR)/libEGL.so.1
+	cp libGLESv2.so $(INSTALLDIR)/libGLESv2.so.2
+	rm -f $(INSTALLDIR)/libEGL.so $(INSTALLDIR)/libGLESv2.so
+        # the following will fail if the filing system is not a Linux one
+        # (never mind)
+	- ln -sf libEGL.so.1 $(INSTALLDIR)/libEGL.so
+	- ln -sf libGLESv2.so.2 $(INSTALLDIR)/libGLESv2.so
+	# copy them if linking didn't work
+	[ -e $(INSTALLDIR)/libEGL.so ] || cp libEGL.so $(INSTALLDIR)/libEGL.so
+	[ -e $(INSTALLDIR)/libGLESv2.so ] || cp libGLESv2.so $(INSTALLDIR)/libGLESv2.so
+        
+clean:
+	rm -f *.o *.a *.d *.so
+
+-include *.d
