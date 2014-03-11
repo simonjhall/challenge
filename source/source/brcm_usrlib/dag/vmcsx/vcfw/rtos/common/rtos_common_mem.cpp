@@ -198,7 +198,7 @@ static std::list<MemHeader *> *g_pAllocs = 0;
 	}
 
 	GhwMemHandleMalloc::~GhwMemHandleMalloc() {
-		delete [] virtAddr;
+		delete [] (char *)virtAddr;
 		
 		refCnt =0;
 		lockCnt =0;
@@ -329,8 +329,8 @@ void mem_get_default_partition(void **mempool_base, uint32_t *mempool_size, void
 int mem_init(void *mempool_base, uint32_t mempool_size, void *mempool_handles_base, uint32_t mempool_handles_size)
 {
 	/* open the new allocator instance and initialize */
-	mem_allocator = GhwMemAllocator::create(GhwMemAllocator::GHW_MEM_ALLOC_RETAIN_NONE, 4*1024*1024, 4);
-	mem_allocator1 = GhwMemAllocator::create(GhwMemAllocator::GHW_MEM_ALLOC_RETAIN_NONE, 1*1024*1024, 4);
+	mem_allocator = GhwMemAllocator::create(GhwMemAllocator::GHW_MEM_ALLOC_RETAIN_NONE, 4*1024*1024, 4/*, true*/);
+	mem_allocator1 = GhwMemAllocator::create(GhwMemAllocator::GHW_MEM_ALLOC_RETAIN_NONE, 1*1024*1024, 4/*, true*/);
 			
 	if (mem_allocator == NULL) {
 		LOGE("GhwMemAllocator::create failed \n");
@@ -407,6 +407,62 @@ void mem_compact(mem_compact_mode_t mode) {
 extern "C" void comp(void)
 {
 //	mem_compact(MEM_COMPACT_ALL);
+}
+
+extern "C" void *get_image_buffer(int b);
+
+extern "C" MEM_HANDLE_T allocate_image(unsigned int id)
+{
+	class ImageHandle : public ghw::GhwMemHandle {
+	public:
+		ImageHandle(void *p) :
+			GhwMemHandle(),
+			m_pVa(p)
+		{
+		}
+
+	    virtual ~ImageHandle()
+	    {
+	    }
+
+	    virtual    ghw::ghw_error_e     acquire()
+	    {
+	    	return ghw::GHW_ERROR_NONE;
+	    }
+
+	    virtual    ghw::ghw_error_e     release()
+	    {
+	    	return ghw::GHW_ERROR_NONE;
+	    }
+
+	    virtual    ghw_error_e     lock(u32& ipa_addr, void*& virt_addr, u32& size)
+	    {
+	    	virt_addr = m_pVa;
+	    	ipa_addr = (unsigned int)m_pVa;
+
+	    	return ghw::GHW_ERROR_NONE;
+	    }
+
+	    virtual    ghw_error_e     unlock()
+	    {
+	    	return ghw::GHW_ERROR_NONE;
+	    }
+
+	    virtual    ghw_error_e     setName(const char *name)
+	    {
+	    	return ghw::GHW_ERROR_NONE;
+	    }
+
+	    virtual    ghw_error_e     dump(u32 level = 0)
+	    {
+	    	return ghw::GHW_ERROR_NONE;
+	    }
+
+	    void *m_pVa;
+	};
+
+	MemHeader *header = new MemHeader(new ImageHandle(get_image_buffer(id)), 0, 0, MEM_FLAG_NONE);
+	return (MEM_HANDLE_T)header;
 }
 
 MEM_HANDLE_T mem_alloc_ex(uint32_t size, uint32_t align, MEM_FLAG_T flags, const char *desc, mem_compact_mode_t mode)

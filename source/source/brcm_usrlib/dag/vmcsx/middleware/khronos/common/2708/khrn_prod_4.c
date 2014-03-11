@@ -1100,7 +1100,10 @@ void *khrn_hw_queue(
 
    {
 	   static int bin = 0;
-	   update_dispmanx_image(images[bin], types[bin], widths[bin], heights[bin], pitches[bin]);
+	   int prev_bin = bin - 1;
+	   if (prev_bin < 0)
+		   prev_bin = used_images - 1;
+	   update_dispmanx_image(images[prev_bin], types[prev_bin], widths[prev_bin], heights[prev_bin], pitches[prev_bin]);
 //	   update_dispmanx_image(images[bin]);
 
 	   bin++;

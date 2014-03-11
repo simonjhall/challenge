@@ -167,7 +167,8 @@ misc stuff
 
    static INLINE uint32_t khrn_hw_alias_direct(const void *addr)
    {
-	   return ((uint32_t)addr & ~0xc0000000) | 0x40000000;
+//	   return ((uint32_t)addr & ~0xc0000000) | 0x40000000;
+	   return ((uint32_t)addr & ~0xc0000000) | 0x80000000;
    }
 
    static INLINE uint32_t khrn_hw_alias_normal(const void *addr)

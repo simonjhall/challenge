@@ -772,14 +772,22 @@ void gl_dispatch(uint32_t id)
    {
       GLsizei offset = khdispatch_read_sizei();
 
+#ifndef GLXX_NO_VERTEX_CACHE
       glintCacheCreate_impl(offset);
+#else
+      assert(0);
+#endif
       break;
    }
    case GLINTCACHEDELETE_ID:
    {
       GLsizei offset = khdispatch_read_sizei();
 
+#ifndef GLXX_NO_VERTEX_CACHE
       glintCacheDelete_impl(offset);
+#else
+      assert(0);
+#endif
       break;
    }
    case GLINTCACHEDATA_ID:
@@ -787,18 +795,27 @@ void gl_dispatch(uint32_t id)
       GLsizei offset = khdispatch_read_sizei();
       GLsizei length = khdispatch_read_sizei();
 
+#ifndef GLXX_NO_VERTEX_CACHE
       glintCacheData_impl(offset, length, khdispatch_read_ctrl(length));
+#else
+      assert(0);
+#endif
       break;
    }
    case GLINTCACHEGROW_ID:
    {
+#ifndef GLXX_NO_VERTEX_CACHE
       GLboolean success = glintCacheGrow_impl();
 
       khdispatch_write_boolean(success);
+#else
+      assert(0);
+#endif
       break;
    }
    case GLINTCACHEUSE_ID:
    {
+#ifndef GLXX_NO_VERTEX_CACHE
       GLsizei count;
       GLsizei offset[9];
 
@@ -810,6 +827,9 @@ void gl_dispatch(uint32_t id)
          offset[i] = khdispatch_read_sizei();
 
       glintCacheUse_impl(count, offset);
+#else
+      assert(0);
+#endif
       break;
    }
    case GLEGLIMAGETARGETTEXTURE2DOES_ID: /* RPC_CALL2 (GL_OES_EGL_image) */

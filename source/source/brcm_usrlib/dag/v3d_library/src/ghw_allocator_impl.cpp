@@ -29,6 +29,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdlib.h>
 #include <string.h>
 
+#include <list>
+
 #define PC_BUILD
 #include "ghw_allocator_impl.h"
 
@@ -72,18 +74,194 @@ extern FILE *fd_v3d;
 unsigned int overflowPa = 0;
 unsigned int overflowSize = 1 * 1024 * 1024;
 
+
 namespace ghw {
 
-GhwMemAllocator* GhwMemAllocator::create(u32 mode , u32 slab_size , u32 alignment )
+class SimonAllocator : public GhwMemAllocator
 {
-    GhwAllocatorImpl* allocator = new GhwAllocatorImpl(mode,slab_size,alignment);
-    if(allocator->initCheck()) {
-		LOGE("allocator initcheck failed");
-        delete allocator;
-        return NULL;
+public:
+	SimonAllocator() : GhwMemAllocator()
+	{
+		printf("CONSTRUCTOR of SimonAllocator\n");
+	}
+
+    virtual ~SimonAllocator()
+    {
+    	printf("DESTRUCTOR of SimonAllocator\n");
+    	reset();
     }
 
-    return allocator;
+    virtual    GhwMemHandle*   alloc(u32 size, u32 alignment = 2)
+    {
+    	SimonMemHandle *p = new SimonMemHandle(*this, size, alignment);
+    	m_handles.push_back(p);
+    	return p;
+    }
+
+    virtual    ghw_error_e     free(GhwMemHandle *p)
+    {
+    	m_handles.remove(p);
+    	delete p;
+
+    	return GHW_ERROR_NONE;
+    }
+
+    virtual    ghw_error_e     reset()
+    {
+       	std::list<GhwMemHandle *>::iterator it;
+    	for (it = m_handles.begin(); it != m_handles.end(); it++)
+    		delete *it;
+
+    	m_handles.clear();
+
+    	return GHW_ERROR_NONE;
+    }
+
+    virtual    ghw_error_e     virt2phys(u32& ipa_addr, void* virt_addr)
+    {
+    	ipa_addr = (u32)virt_addr;
+    	return GHW_ERROR_NONE;
+    }
+
+    virtual    ghw_error_e     phys2virt(u32 ipa_addr, void*& virt_addr)
+    {
+    	virt_addr = (void *)ipa_addr;
+    	return GHW_ERROR_NONE;
+    }
+
+    virtual    ghw_error_e     setName(const char *name)
+    {
+    	return GHW_ERROR_NONE;
+    }
+
+    virtual    ghw_error_e     dump(u32 level = 0)
+    {
+    	return GHW_ERROR_NONE;
+    }
+
+private:
+
+    class SimonMemHandle : public GhwMemHandle
+	{
+	public:
+		SimonMemHandle(SimonAllocator &rParent, unsigned int size, unsigned int align) :
+			GhwMemHandle(),
+			m_refCnt(1),
+			m_lockCnt(0),
+
+			m_rParent(rParent),
+
+			m_pVa(0),
+			m_pa(0),
+			m_size(size),
+			m_align(1 << align),
+
+			m_pHandle(0)
+		{
+			m_pHandle = m_rParent.m_device.allocDevMem(m_pa, m_pVa, m_size, m_align);
+			assert(m_pHandle);
+		}
+		virtual ~SimonMemHandle()
+		{
+			assert(m_pHandle);
+			free();
+		}
+
+		virtual    ghw_error_e acquire()
+		{
+			assert(m_pHandle);
+			m_refCnt++;
+			return GHW_ERROR_NONE;
+		};
+		virtual    ghw_error_e release()
+		{
+			assert(m_pHandle);
+			m_refCnt--;
+
+			if (m_refCnt == 0)
+				free();
+//			if (m_refCnt == 0)
+//				handleRelease();
+			return GHW_ERROR_NONE;
+		};
+		virtual    ghw_error_e lock(u32& ipa_addr, void*& virt_addr, u32& size)
+		{
+			assert(m_pHandle);
+
+			m_lockCnt++;
+
+			virt_addr = (void *)m_pVa;
+			m_pa = ipa_addr;
+			size = m_size;
+
+			return GHW_ERROR_NONE;
+		};
+		virtual    ghw_error_e unlock()
+		{
+			assert(m_pHandle);
+			m_lockCnt--;
+
+			return GHW_ERROR_NONE;
+		};
+		u32 getRefCnt()
+		{
+			return m_refCnt;
+		};
+
+		virtual    ghw_error_e     setName(const char *name)
+		{
+			return GHW_ERROR_NONE;
+		}
+
+		virtual    ghw_error_e     dump(u32 level = 0)
+		{
+			return GHW_ERROR_NONE;
+		}
+	private:
+		void free(void)
+		{
+			m_rParent.m_device.freeDevMem(m_pa, m_pVa, m_size, m_pHandle);
+
+			m_pa = 0;
+			m_pVa = 0;
+			m_pHandle = 0;
+		}
+
+		unsigned int m_refCnt;
+		unsigned int m_lockCnt;
+
+		unsigned char *m_pVa;
+		unsigned int m_pa;
+		const unsigned int m_size;
+		const unsigned int m_align;
+
+		void *m_pHandle;
+
+		SimonAllocator &m_rParent;
+	};
+
+    GhwAllocatorDevice m_device;
+
+    std::list<GhwMemHandle *> m_handles;
+};
+
+GhwMemAllocator* GhwMemAllocator::create(u32 mode , u32 slab_size , u32 alignment/*, bool a*/)
+{
+	/*if (a)*/
+	{
+		GhwAllocatorImpl* allocator = new GhwAllocatorImpl(mode,slab_size,alignment);
+
+		if(allocator->initCheck()) {
+			LOGE("allocator initcheck failed");
+			delete allocator;
+			return NULL;
+		}
+
+		return allocator;
+	}
+//	/*else
+//		return new SimonAllocator();*/
+//	return new SimonAllocator();
 }
 
 int GhwAllocatorDevice::count = 0;
@@ -128,10 +306,10 @@ static FILE *dev_mem_file;
 static void *arm_phys;
 static void *virt;
 static void *phys;
-static unsigned int max_size = 100 * 1024 * 1024;
+static unsigned int max_size = 80 * 1024 * 1024;
 static int free_size = (int)max_size;
 
-void* GhwAllocatorDevice::allocDevMem(u32& pa, unsigned char*& va,u32 size) {
+void* GhwAllocatorDevice::allocDevMem(u32& pa, unsigned char*& va,u32 size, u32 byteAlignment) {
 #ifdef __ARMEL__
 	if (first_time)
 	{
@@ -215,14 +393,14 @@ void* GhwAllocatorDevice::allocDevMem(u32& pa, unsigned char*& va,u32 size) {
 	mspace_malloc_stats(vram);
 
 	//4k align everything
-//	size = (size + 4095) & ~4095;
+	size = (size + 4095) & ~4095;
 
-	va = (unsigned char *)mspace_memalign(vram, 4096, size);
+	va = (unsigned char *)mspace_memalign(vram, /*byteAlignment*/4096, size);
 
 	if (!va)
 	{
 		comp();
-		va = (unsigned char *)mspace_memalign(vram, 4096, size);
+		va = (unsigned char *)mspace_memalign(vram, byteAlignment, size);
 	}
 
 	if (va)
@@ -316,7 +494,9 @@ void* GhwAllocatorDevice::allocDevMem(u32& pa, unsigned char*& va,u32 size) {
 void GhwAllocatorDevice::freeDevMem(u32& pa, unsigned char*& va,u32 size, void* handle) {
 #ifdef PC_BUILD
 #ifdef __ARMEL__
+	printf("free of %p\n");
 	mspace_free(vram, va);
+	delete handle;
 #else
     delete []va;
 	delete handle;
@@ -403,11 +583,14 @@ GhwMemHandle* GhwAllocatorImpl::alloc(u32 size, u32 alignment )
     GhwMemBlockNode* node = mList.getHead();
     while(node) {
         GhwMemBlock* handle = node->get();
-        GhwMemHandle* mem = handle->alloc(size,alignment);
-        if(mem) {
-			unprotect();
-			return mem;
-		}
+        if (handle->getFreeSize() >= size)
+        {
+			GhwMemHandle* mem = handle->alloc(size,alignment);
+			if(mem) {
+				unprotect();
+				return mem;
+			}
+        }
         node = node->getNext();
     }
 

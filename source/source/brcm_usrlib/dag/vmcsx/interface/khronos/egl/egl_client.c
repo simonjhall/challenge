@@ -204,9 +204,11 @@ Also affects global image (and possibly others?)
 
    -
 */
+void init_dispmanx(int type, int width, int height);
 
 EGLAPI EGLBoolean EGLAPIENTRY eglInitialize(EGLDisplay dpy, EGLint *major, EGLint *minor)
 {
+	init_dispmanx(VC_IMAGE_RGB565, -1, -1);
 #if defined(RPC_DIRECT_MULTI)
    CLIENT_THREAD_STATE_T *thread;
    EGLBoolean result;

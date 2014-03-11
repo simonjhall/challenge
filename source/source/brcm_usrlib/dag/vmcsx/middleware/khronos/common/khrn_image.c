@@ -201,6 +201,8 @@ MEM_HANDLE_T khrn_image_create_from_storage(KHRN_IMAGE_FORMAT_T format,
    return handle;
 }
 
+MEM_HANDLE_T allocate_image(unsigned int id);
+
 MEM_HANDLE_T khrn_image_create(KHRN_IMAGE_FORMAT_T format,
    uint32_t width, uint32_t height,
    KHRN_IMAGE_CREATE_FLAG_T flags)
@@ -254,28 +256,36 @@ MEM_HANDLE_T khrn_image_create(KHRN_IMAGE_FORMAT_T format,
       alloc storage
    */
 
-   if (flags & IMAGE_CREATE_FLAG_NO_STORAGE) {
-      storage_handle = MEM_INVALID_HANDLE;
-   } else {
-      storage_size = khrn_image_get_size(format, padded_width, padded_height);
-      if (flags & IMAGE_CREATE_FLAG_PAD_ROTATE)
-         storage_size = _max(storage_size, khrn_image_get_size(format, padded_height, padded_width));
-      storage_size += stagger;
+   //sjh here
+   if (create_window_surface && !(flags & IMAGE_CREATE_FLAG_NO_STORAGE))
+   {
+	   storage_handle = allocate_image(0);
+   }
+   else
+   {
+	   if (flags & IMAGE_CREATE_FLAG_NO_STORAGE) {
+		  storage_handle = MEM_INVALID_HANDLE;
+	   } else {
+		  storage_size = khrn_image_get_size(format, padded_width, padded_height);
+		  if (flags & IMAGE_CREATE_FLAG_PAD_ROTATE)
+			 storage_size = _max(storage_size, khrn_image_get_size(format, padded_height, padded_width));
+		  storage_size += stagger;
 
-      storage_handle = mem_alloc_ex(storage_size, align,
-         (MEM_FLAG_T)(MEM_FLAG_DIRECT | MEM_FLAG_RESIZEABLE | (((flags & IMAGE_CREATE_FLAG_INIT_MASK) == IMAGE_CREATE_FLAG_ZERO) ? (MEM_FLAG_ZERO | MEM_FLAG_INIT) : MEM_FLAG_NO_INIT)),
-         "KHRN_IMAGE_T.storage",
-         MEM_COMPACT_DISCARD);     // check, no term
-      if (storage_handle == MEM_INVALID_HANDLE) {
-         if (aux_handle != MEM_INVALID_HANDLE) {
-            mem_release(aux_handle);
-         }
-         return MEM_INVALID_HANDLE;
-      }
-      if ((flags & IMAGE_CREATE_FLAG_INIT_MASK) == IMAGE_CREATE_FLAG_ONE) {
-         khrn_memset(mem_lock(storage_handle), -1, storage_size);
-         mem_unlock(storage_handle);
-      }
+		  storage_handle = mem_alloc_ex(storage_size, align,
+			 (MEM_FLAG_T)(MEM_FLAG_DIRECT | MEM_FLAG_RESIZEABLE | (((flags & IMAGE_CREATE_FLAG_INIT_MASK) == IMAGE_CREATE_FLAG_ZERO) ? (MEM_FLAG_ZERO | MEM_FLAG_INIT) : MEM_FLAG_NO_INIT)),
+			 "KHRN_IMAGE_T.storage",
+			 MEM_COMPACT_DISCARD);     // check, no term
+		  if (storage_handle == MEM_INVALID_HANDLE) {
+			 if (aux_handle != MEM_INVALID_HANDLE) {
+				mem_release(aux_handle);
+			 }
+			 return MEM_INVALID_HANDLE;
+		  }
+		  if ((flags & IMAGE_CREATE_FLAG_INIT_MASK) == IMAGE_CREATE_FLAG_ONE) {
+			 khrn_memset(mem_lock(storage_handle), -1, storage_size);
+			 mem_unlock(storage_handle);
+		  }
+	   }
    }
 
    /*

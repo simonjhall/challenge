@@ -92,8 +92,17 @@ static void *alloc_block(void)
       setup the legacy block
    */
 
-   for (i = 1; i != blocks_per_legacy_block; ++i) { /* skip the first block (we're going to return it) */
-      ((KHRN_NMEM_BLOCK_T *)p)[i].free_next = (i == (blocks_per_legacy_block - 1)) ? NULL : ((KHRN_NMEM_BLOCK_T *)p + i + 1);
+   for (i = 1; i != blocks_per_legacy_block; ++i)
+   { /* skip the first block (we're going to return it) */
+	   KHRN_NMEM_BLOCK_T *b = (KHRN_NMEM_BLOCK_T *)p;
+
+	   KHRN_NMEM_BLOCK_T *pNext;
+	   if (i == (blocks_per_legacy_block - 1))
+		   pNext = 0;
+	   else
+		   pNext = b + i + 1;
+
+      b[i].free_next = pNext;
    }
 
    /*

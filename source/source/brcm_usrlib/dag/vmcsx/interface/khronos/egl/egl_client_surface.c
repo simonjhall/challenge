@@ -362,7 +362,7 @@ EGL_SURFACE_T *egl_surface_create(
    //sjh
    if (first)
    {
-	   init_dispmanx(color, width, height);
+//	   init_dispmanx(color, width, height);
 	   first = 0;
    }
 
