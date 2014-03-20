@@ -34,9 +34,9 @@ extern "C" {
 #include <pthread.h>
 };
 
-namespace ghw {
-
 #include "list.h"
+
+namespace ghw {
 
 class GhwMemBlock;
 //This class abstracts the platform. All Platform changes are done here

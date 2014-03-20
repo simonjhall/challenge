@@ -443,7 +443,11 @@ void* GhwAllocatorDevice::allocDevMem(u32& pa, unsigned char*& va,u32 size, u32 
     va = new unsigned char[size];
     pa = ((u32)va) /*| 0xfaa00000*/;
 
-    printf("allocated device mem %p->%p %p->%p\n", va, (void *)((unsigned int)va + size), pa, (void *)((unsigned int)pa + size));
+    static unsigned int total_size = 0;
+    total_size += size;
+
+    printf("allocated device mem %p->%p %p->%p, %.2f MB\n", va, (void *)((unsigned int)va + size), pa, (void *)((unsigned int)pa + size),
+    		(float)total_size / 1048576);
 
     return new unsigned char;
 #endif
@@ -580,7 +584,7 @@ GhwMemHandle* GhwAllocatorImpl::alloc(u32 size, u32 alignment )
     protect();
     if(alignment < mAlignment) alignment = mAlignment;
 
-    GhwMemBlockNode* node = mList.getHead();
+    /*GhwMemBlockNode* node = mList.getHead();
     while(node) {
         GhwMemBlock* handle = node->get();
         if (handle->getFreeSize() >= size)
@@ -592,6 +596,20 @@ GhwMemHandle* GhwAllocatorImpl::alloc(u32 size, u32 alignment )
 			}
         }
         node = node->getNext();
+    }*/
+
+    std::map<unsigned int, GhwMemBlockNode *>::iterator it;
+    for (it = mList.m_map.begin(); it != mList.m_map.end(); it++)
+    {
+    	GhwMemBlock* handle = it->second->get();
+        if (handle->getFreeSize() >= size)
+        {
+			GhwMemHandle* mem = handle->alloc(size,alignment);
+			if(mem) {
+				unprotect();
+				return mem;
+			}
+        }
     }
 
     u32 alignsize = size ;
@@ -626,21 +644,33 @@ ghw_error_e GhwAllocatorImpl::free(GhwMemHandle* aHandle)
 ghw_error_e GhwAllocatorImpl::reset()
 {
 	protect();
+//	std::map<unsigned int, GhwMemBlockNode *>::iterator it;
+
     GhwMemBlockNode* node = mList.getHead();
     switch (mMode) {
     case GHW_MEM_ALLOC_RETAIN_ALL:
 		{
-    while(node) {
-        node->get()->acquire();
-        node->get()->reset();
-        node->get()->release();
-        node = node->getNext();
-        }
-        break;
+			while(node)
+			{
+				node->get()->acquire();
+				node->get()->reset();
+				node->get()->release();
+				node = node->getNext();
+			}
+			/*for (it = mList.m_map.begin(); it != mList.m_map.end(); it++)
+			{
+				GhwMemBlockNode* node = it->second->get();
+
+				node->get()->acquire();
+				node->get()->reset();
+				node->get()->release();
+			}*/
+			break;
         }
 	default:
 		{
-			while(node) {
+			while(node)
+			{
 				if((mMode == GHW_MEM_ALLOC_RETAIN_ONE) && (mList.getCount() == 1)) {
 					node->get()->acquire();
 					node->get()->reset();
@@ -652,7 +682,7 @@ ghw_error_e GhwAllocatorImpl::reset()
 				delete node->get();
 				mList.removeNode(node);
 				node = mList.getHead();
-				}
+			}
 			break;
 		}
 	}
@@ -676,7 +706,7 @@ ghw_error_e GhwAllocatorImpl::virt2phys(u32& ipa_addr, void* virt_addr)
 {
 	protect();
 	unsigned char* addrin = (unsigned char*) virt_addr;
-	GhwMemBlockNode* node = mList.getHead();
+	/*GhwMemBlockNode* node = mList.getHead();
 	while(node) {
 		u32 ipa,size;
 		unsigned char* addr;
@@ -689,6 +719,23 @@ ghw_error_e GhwAllocatorImpl::virt2phys(u32& ipa_addr, void* virt_addr)
 		}
 		node->get()->unlock();
 		node = node->getNext();
+	}*/
+
+	std::map<unsigned int, GhwMemBlockNode *>::iterator it;
+	for (it = mList.m_map.begin(); it != mList.m_map.end(); it++)
+	{
+		GhwMemBlockNode* node = it->second;
+
+		u32 ipa,size;
+		unsigned char* addr;
+		node->get()->lock(ipa,(void*&)addr,size);
+		if((addrin > addr) && (addrin < (addr +size)) ) {
+			ipa_addr = ipa + ((unsigned int) (addrin-addr));
+			node->get()->unlock();
+			unprotect();
+			return GHW_ERROR_NONE;
+		}
+		node->get()->unlock();
 	}
 
 	unprotect();
@@ -698,7 +745,8 @@ ghw_error_e GhwAllocatorImpl::phys2virt(u32 ipa_addr, void*& virt_addr)
 {
 	protect();
 	unsigned int addrin = (unsigned int) ipa_addr;
-	GhwMemBlockNode* node = mList.getHead();
+
+	/*GhwMemBlockNode* node = mList.getHead();
 	while(node) {
 		u32 ipa,size;
 		unsigned char* addr;
@@ -711,6 +759,23 @@ ghw_error_e GhwAllocatorImpl::phys2virt(u32 ipa_addr, void*& virt_addr)
 		}
 		node->get()->unlock();
 		node = node->getNext();
+	}*/
+
+	std::map<unsigned int, GhwMemBlockNode *>::iterator it;
+	for (it = mList.m_map.begin(); it != mList.m_map.end(); it++)
+	{
+		GhwMemBlockNode* node = it->second;
+
+		u32 ipa,size;
+		unsigned char* addr;
+		node->get()->lock(ipa,(void*&)addr,size);
+		if((addrin > ipa) && (addrin < (ipa +size)) ) {
+			virt_addr = (void*) ( addr + ((unsigned int) (addrin-ipa)));
+			node->get()->unlock();
+			unprotect();
+			return GHW_ERROR_NONE;
+		}
+		node->get()->unlock();
 	}
 
 	unprotect();

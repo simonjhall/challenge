@@ -18,7 +18,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #define KHRN_GENERIC_MAP_RELOCATABLE
 
 #ifdef KHRN_MAP_C
-   #include "interface/khronos/common/khrn_int_generic_map.c"
+//   #include "interface/khronos/common/khrn_int_generic_map.c"
 #else
    #include "interface/khronos/common/khrn_int_generic_map.h"
 #endif

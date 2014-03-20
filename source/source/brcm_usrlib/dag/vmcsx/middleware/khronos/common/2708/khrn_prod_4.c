@@ -36,6 +36,8 @@ extern "C" {
 #include "interface/khronos/common/khrn_int_util.h"
 #include "middleware/khronos/egl/egl_disp.h"
 
+#include "interface/khronos/common/cache_cache.h"
+
 #ifndef SIMPENROSE
    #include "vcfw/drivers/chip/v3d.h"
 #endif
@@ -1334,6 +1336,9 @@ void khrn_hw_wait(void)
 		   LOGE("ioctl [0x%x] failed \n", V3D_IOCTL_WAIT_JOB);
 	   }
 //	LOGE("wait completed for job finish");
+
+	increment_frame_count();
+
 	pthread_mutex_lock(&khrn_hw_queue_mutex);
 	if(msg_list_android == NULL)
 	 {

@@ -23,6 +23,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 #include <assert.h>
 
+#include "cache_cache.h"
+
 #ifdef SIMPENROSE
 #include "v3d/verification/tools/2760sim/simpenrose.h"
 #endif
@@ -73,6 +75,9 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 			platform_memcpy(handle_mem,data,len);
 			mem_unlock(handle);
 			khrn_map_insert(&cache->map, key, handle);
+
+			add_new_entry(&cache->map, key);
+
 			mem_release(handle);
 			}
       }
@@ -83,6 +88,7 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 
 		if (handle && handle_len >= len && !memcmp(handle_mem, data, len)) {
 			mem_unlock(handle);
+			touch_entry(&cache->map, key);
 			return handle;
 			}
 		else if(handle && handle_len < len && !memcmp(handle_mem, data, handle_len)) {
@@ -92,6 +98,7 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 				{
 				handle_mem = mem_lock(handle);
 				platform_memcpy(handle_mem,data,len);
+				touch_entry(&cache->map, key);
 				mem_unlock(handle);
 				}
 			}
@@ -102,6 +109,7 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 			if(!((handle == MEM_HANDLE_INVALID) || (handle == (MEM_HANDLE_T)(-1))))
 				{
 //				LOGE("hash key had a valid handle .. what to do?");
+					touch_entry(&cache->map, key);
 				}
 			else
 				{
@@ -111,6 +119,9 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 					handle_mem = mem_lock(handle);
 					platform_memcpy(handle_mem,data,len);
 					mem_unlock(handle);
+
+					add_new_entry(&cache->map, key);
+
 					khrn_map_insert(&cache->map, key, handle);
 					mem_release(handle);
 					}

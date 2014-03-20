@@ -27,6 +27,7 @@ typedef struct {
    KHRN_GENERIC_MAP(ENTRY_T) *storage;
 #endif
    uint32_t capacity;
+   void *m_pReverseMap, *m_pReverseMap2;
 } KHRN_GENERIC_MAP(T);
 
 /*
