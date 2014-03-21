@@ -78,9 +78,10 @@ uint32_t        initval)         /* the previous hash, or an arbitrary value */
     a += k[0];
     b += k[1];
     c += k[2];
+    k += 3;
+    __builtin_prefetch(k + 16);
     mix(a,b,c);
     length -= 3;
-    k += 3;
   }
 
   /*------------------------------------------- handle the last 3 uint32_t's */
