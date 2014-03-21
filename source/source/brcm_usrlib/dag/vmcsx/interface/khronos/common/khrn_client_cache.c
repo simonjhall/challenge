@@ -76,7 +76,9 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 			mem_unlock(handle);
 			khrn_map_insert(&cache->map, key, handle);
 
+#ifdef LRU_FREE
 			add_new_entry(&cache->map, key);
+#endif
 
 			mem_release(handle);
 			}
@@ -88,7 +90,9 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 
 		if (handle && handle_len >= len && !memcmp(handle_mem, data, len)) {
 			mem_unlock(handle);
+#ifdef LRU_FREE
 			touch_entry(&cache->map, key);
+#endif
 			return handle;
 			}
 		else if(handle && handle_len < len && !memcmp(handle_mem, data, handle_len)) {
@@ -98,7 +102,9 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 				{
 				handle_mem = mem_lock(handle);
 				platform_memcpy(handle_mem,data,len);
+#ifdef LRU_FREE
 				touch_entry(&cache->map, key);
+#endif
 				mem_unlock(handle);
 				}
 			}
@@ -109,7 +115,9 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 			if(!((handle == MEM_HANDLE_INVALID) || (handle == (MEM_HANDLE_T)(-1))))
 				{
 //				LOGE("hash key had a valid handle .. what to do?");
+#ifdef LRU_FREE
 					touch_entry(&cache->map, key);
+#endif
 				}
 			else
 				{
@@ -120,7 +128,9 @@ int khrn_cache_lookup(KHRN_CACHE_T *cache, const void *data, int len, int sig, b
 					platform_memcpy(handle_mem,data,len);
 					mem_unlock(handle);
 
+#ifdef LRU_FREE
 					add_new_entry(&cache->map, key);
+#endif
 
 					khrn_map_insert(&cache->map, key, handle);
 					mem_release(handle);

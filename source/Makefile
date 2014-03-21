@@ -1,5 +1,5 @@
-CC=arm-linux-gnueabihf-gcc
-CXX=arm-linux-gnueabihf-g++
+CC=gcc-4.7
+CXX=g++-4.7
 
 INCLUDES=-I"source/brcm_usrlib/dag/vmcsx" -I"source/brcm_usrlib/dag/vmcsx/helpers/vc_image" -I"source/brcm_usrlib/dag/vmcsx/interface/vcos/pthreads" -I"source/brcm_usrlib/dag/v3d_library/inc" -I"source/brcm_usrlib/dag/v3d_library/src" -I"source/brcm_usrlib/dag/vmcsx/interface/khronos/include" -I"source/brcm_usrlib/dag/vmcsx/middleware/khronos/common" -I"source/brcm_usrlib/dag/vmcsx/vcfw/drivers/chip" -I"source/brcm_usrlib/dag/vmcsx/vcinclude"
 DEFINES=-DBCG_FB_LAYOUT -DBRCM_V3D_OPT=1 -D_KHRONOS_CLIENT_LOGGING -DEGL_SERVER_SMALLINT -DBCM_COMP_USE_RELOC_HEAP -DUNIFORM_LOCATION_IS_16_BIT -D__VIDEOCORE4__ -D__DIRECT_RENDERING -DRPC_DIRECT -DRPC_DIRECT_MULTI -DNDEBUG__ -D__CC_ARM
