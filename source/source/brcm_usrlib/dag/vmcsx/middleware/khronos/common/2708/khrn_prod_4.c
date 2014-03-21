@@ -1337,7 +1337,9 @@ void khrn_hw_wait(void)
 	   }
 //	LOGE("wait completed for job finish");
 
+#ifdef LRU_FREE
 	increment_frame_count();
+#endif
 
 	pthread_mutex_lock(&khrn_hw_queue_mutex);
 	if(msg_list_android == NULL)

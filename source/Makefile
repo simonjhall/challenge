@@ -28,7 +28,7 @@ install: $(LIBEGL) $(LIBGLESv2)
 	cp $(LIBGLESv2) /opt/vc/lib/
 
 $(LIBEGL): $(OBJECTS_C) $(OBJECTS_CPP) ./source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/dispman_connection.c.o
-	$(CC) $(LDFLAGS) $(OBJECTS_C) $(OBJECTS_CPP) ./source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/dispman_connection.c.o -o $@
+	$(CXX) $(LDFLAGS) $(OBJECTS_C) $(OBJECTS_CPP) ./source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/dispman_connection.c.o -o $@
 
 $(LIBGLESv2): glesv2.c
 	$(CC) $(LDFLAGS) $< -o $@
