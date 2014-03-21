@@ -45,6 +45,8 @@
 //#define PRINTK(args...)
 #define PRINTK_VERBOSE(args...)
 
+#define OVERLAPPED_RENDERING
+
 /***** TYPES ****/
 #define PAGES_PER_LIST 500
 struct PageList
@@ -860,24 +862,6 @@ static long Ioctl(struct file *pFile, unsigned int cmd, unsigned long arg)
 			int countdown = 1000000;
 			int initial_bfc, initial_rfc;
 
-			while (countdown--)
-			{
-				if (g_pV3dCle->m_pcs == 0)
-					break;
-				else
-					schedule();
-			}
-
-			countdown = 1000000;
-
-			if (countdown == 0)
-			{
-				PRINTK(KERN_ERR "gpu thread 1 has not stopped\n");
-				PRINTK_VERBOSE(KERN_DEBUG "resetting\n");
-				g_pV3dCle->m_ct0cs = 1 << 15;
-				g_pV3dCle->m_ct1cs = 1 << 15;
-			}
-
 			//flush caches
 			g_pV3dCache->m_l2cactl = 1 << 2;
 
@@ -992,12 +976,13 @@ static long Ioctl(struct file *pFile, unsigned int cmd, unsigned long arg)
 							if (g_pV3dCle->m_ct0ca != current_addr)
 								break;
 						}
+						countdown = 1000000;
 					}
 					else
 						PRINTK(KERN_ERR "out of spare overspill memory!\n");
 				}
 
-				if ((g_pV3dCle->m_bfc & 0xff) == initial_bfc + 1)
+				if ((g_pV3dCle->m_bfc & 0xff) == ((initial_bfc + 1) & 0xff))
 				{
 					PRINTK_VERBOSE(KERN_DEBUG "appears finished status %08x pcs %08x\n", GetThreadStatus(0), g_pV3dCle->m_pcs);
 					break;
@@ -1012,7 +997,7 @@ static long Ioctl(struct file *pFile, unsigned int cmd, unsigned long arg)
 
 			if (countdown <= 0)
 			{
-				PRINTK(KERN_DEBUG "thread 0 appears to have died\n");
+				PRINTK(KERN_DEBUG "thread 0 appears to have died, bfc %d initial bfc %d\n", g_pV3dCle->m_bfc & 0xff, initial_bfc);
 				PRINTK_VERBOSE(KERN_DEBUG "resetting both threads\n");
 				g_pV3dCle->m_ct0cs = 1 << 15;
 				g_pV3dCle->m_ct1cs = 1 << 15;
@@ -1044,45 +1029,47 @@ static long Ioctl(struct file *pFile, unsigned int cmd, unsigned long arg)
 					g_pV3dCache->m_slcactl = 0xf << 24;*/
 
 					RunThread(1, post.v3d_ct1ca, post.v3d_ct1ea);
-//
-//					countdown = 1000000;
-//
-//					while(countdown--)
-//					{
-//						/*if (HasThreadStopped(1))
-//							break;*/
-//						/*else
-//							schedule();*/
-//
-//						if ((g_pV3dCle->m_rfc & 0xff) == initial_rfc + 1)
-//							break;
-//					}
-//
-//					if (countdown <= 0)
-//					{
-//						PRINTK(KERN_DEBUG "thread 1 appears to have died\n");
-//						PRINTK_VERBOSE(KERN_DEBUG "resetting\n");
-//						g_pV3dCle->m_ct0cs = 1 << 15;
-//						g_pV3dCle->m_ct1cs = 1 << 15;
-//					}
-//
-//					countdown = 1000000;
-//					while (countdown--)
-//					{
-//						if (g_pV3dCle->m_pcs == 0)
-//							break;
-//						else
-//							schedule();
-//					}
-//
-//					PRINTK_VERBOSE(KERN_DEBUG "STOPPED BUT OUT OF MEMORY status %08x pcs %08x\n", GetThreadStatus(0), g_pV3dCle->m_pcs);
-//
-//					barrier();
-//
-//					PRINTK_VERBOSE(KERN_DEBUG "post kick 1\n");
-//					PRINTK_VERBOSE(KERN_DEBUG "thread 1 status %08x pc %08x error %d ra %08x\n", GetThreadStatus(1), GetThreadPc(1), HasThreadStoppedWithError(1), GetThreadReturnAddr(1));
-//					PRINTK_VERBOSE(KERN_DEBUG "error codes %08x pcs %08x\n",
-//							g_pV3dDebErr->m_errStat, g_pV3dCle->m_pcs);
+
+#ifndef OVERLAPPED_RENDERING
+					countdown = 1000000;
+
+					while(countdown--)
+					{
+						/*if (HasThreadStopped(1))
+							break;*/
+						/*else
+							schedule();*/
+
+						if ((g_pV3dCle->m_rfc & 0xff) == ((initial_rfc + 1) & 0xff))
+							break;
+					}
+
+					if (countdown <= 0)
+					{
+						PRINTK(KERN_DEBUG "thread 1 appears to have died\n");
+						PRINTK_VERBOSE(KERN_DEBUG "resetting\n");
+						g_pV3dCle->m_ct0cs = 1 << 15;
+						g_pV3dCle->m_ct1cs = 1 << 15;
+					}
+
+					countdown = 1000000;
+					while (countdown--)
+					{
+						if (g_pV3dCle->m_pcs == 0)
+							break;
+						else
+							schedule();
+					}
+
+					PRINTK_VERBOSE(KERN_DEBUG "STOPPED BUT OUT OF MEMORY status %08x pcs %08x\n", GetThreadStatus(0), g_pV3dCle->m_pcs);
+
+					barrier();
+
+					PRINTK_VERBOSE(KERN_DEBUG "post kick 1\n");
+					PRINTK_VERBOSE(KERN_DEBUG "thread 1 status %08x pc %08x error %d ra %08x\n", GetThreadStatus(1), GetThreadPc(1), HasThreadStoppedWithError(1), GetThreadReturnAddr(1));
+					PRINTK_VERBOSE(KERN_DEBUG "error codes %08x pcs %08x\n",
+							g_pV3dDebErr->m_errStat, g_pV3dCle->m_pcs);
+#endif
 				}
 				else
 				{
@@ -1111,6 +1098,28 @@ static long Ioctl(struct file *pFile, unsigned int cmd, unsigned long arg)
 			}
 
 			PRINTK_VERBOSE(KERN_DEBUG "WAIT JOB id %d\n", wait.job_id);
+
+#ifdef OVERLAPPED_RENDERING
+			int countdown = 1000000;
+
+			while (countdown--)
+			{
+				if (g_pV3dCle->m_pcs == 0)
+					break;
+				else
+					schedule();
+			}
+
+			countdown = 1000000;
+
+			if (countdown == 0)
+			{
+				PRINTK(KERN_ERR "gpu thread 1 has not stopped\n");
+				PRINTK_VERBOSE(KERN_DEBUG "resetting\n");
+				g_pV3dCle->m_ct0cs = 1 << 15;
+				g_pV3dCle->m_ct1cs = 1 << 15;
+			}
+#endif
 
 			wait.job_status = V3D_JOB_STATUS_SUCCESS;
 

@@ -23,6 +23,10 @@ all: $(SOURCES_C) $(SOURCE_CPP) $(LIBEGL) $(LIBGLESv2) ./source/brcm_usrlib/dag/
 clean:
 	rm -f $(OBJECTS_C) $(OBJECTS_CPP) $(LIBEGL) $(LIBGLESv2) ./source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/dispman_connection.c.o
 
+install: $(LIBEGL) $(LIBGLESv2)
+	cp $(LIBEGL) /opt/vc/lib/
+	cp $(LIBGLESv2) /opt/vc/lib/
+
 $(LIBEGL): $(OBJECTS_C) $(OBJECTS_CPP) ./source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/dispman_connection.c.o
 	$(CC) $(LDFLAGS) $(OBJECTS_C) $(OBJECTS_CPP) ./source/brcm_usrlib/dag/vmcsx/middleware/khronos/common/2708/dispman_connection.c.o -o $@
 
