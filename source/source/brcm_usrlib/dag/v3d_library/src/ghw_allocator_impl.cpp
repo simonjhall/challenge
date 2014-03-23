@@ -306,7 +306,7 @@ static FILE *dev_mem_file;
 static void *arm_phys;
 static void *virt;
 static void *phys;
-static unsigned int max_size = 85 * 1024 * 1024;
+static unsigned int max_size = 87 * 1024 * 1024;
 static int free_size = (int)max_size;
 
 void* GhwAllocatorDevice::allocDevMem(u32& pa, unsigned char*& va,u32 size, u32 byteAlignment) {
